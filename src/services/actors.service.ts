@@ -37,6 +37,18 @@ export class ActorsService {
   }
 
 
+
+
+
+   updateActor(actor: Actor){
+     return this.http.put(this.actorsURL, actor, this.options)
+       .map( res =>
+         res.json()
+       ).catch(this.handleErrorPromise);
+  }
+
+
+
   getActors() {
 
 
@@ -44,6 +56,18 @@ export class ActorsService {
                             .map( res =>
                               res.json()
                             ).catch(this.handleErrorPromise);
+
+  }
+
+
+
+  get(id:string) {
+
+
+    return this.http.get(this.actorsURL + "/" + id)
+      .map( res =>
+        res.json()
+      ).catch(this.handleErrorPromise);
 
   }
 

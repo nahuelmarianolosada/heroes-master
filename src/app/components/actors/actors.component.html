@@ -15,13 +15,14 @@
   <div class="row animated fadeIn fast">
     <div class="col-md-12">
       <div class="table-responsive">
-        <table class="table">
-          <thead class="thead-inverse">
+        <table class="table table-striped table-bordered table-hover">
+          <thead class="thead-inverse thead-dark">
           <tr>
             <th>#</th>
             <th>Nombre</th>
             <th>Apellido</th>
             <th>Última Actualización</th>
+            <th>Operaciones</th>
           </tr>
           </thead>
           <tbody>
@@ -30,6 +31,7 @@
               <td>{{actors[k].firstName}}</td>
               <td>{{actors[k].lastName}}</td>
               <td>{{actors[k].lastUpdate | date : 'dd/MM/yyyy'}}</td>
+              <td><button type="button" class="btn btn-outline-dark" [routerLink]="['/actor', actors[k].actorId]">Editar</button></td>
             </tr>
           </tbody>
         </table>
