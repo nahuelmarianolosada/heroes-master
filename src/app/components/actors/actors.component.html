@@ -1,0 +1,54 @@
+<h1>Actores
+  <small>Registrados en la BD</small>
+</h1>
+<!--<div class="card-columns">-->
+
+
+    <div class="row btnNuevoActor" >
+      <div class="col-md-12 text-right">
+        <button class="button btn-outline-primary" type="button" name="btnNuevoActor" [routerLink]="['/actor','nuevo']" >Nuevo Héroe</button>
+      </div>
+    </div>
+
+
+
+  <div class="row animated fadeIn fast">
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="thead-inverse">
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Última Actualización</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let k of actors | keys; let i = index">
+              <td>{{i + 1}} - {{actors[k].actorId}}</td>
+              <td>{{actors[k].firstName}}</td>
+              <td>{{actors[k].lastName}}</td>
+              <td>{{actors[k].lastUpdate | date : 'dd/MM/yyyy'}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!--<div class="card animated fadeIn fast " *ngFor="let actor of actors; let i = index" >
+   &lt;!&ndash; <img class="card-img-top" src="{{actor.img}}" alt="{{actor.first_name}}">&ndash;&gt;
+    <div class="card-body">
+      <h5 class="card-title">{{actor.last_name}}</h5>
+      <p class="card-text">{{actor.first_name}}</p>
+      <p class="card-text"><small class="text-muted">Última actualización </small>{{actor.last_update | date: 'dd/MM/yyyy'}}</p>
+    </div>
+
+
+    <button (click)="verActor(i)" type="button" class="btn btn-outline-primary btn-block">Ver más...</button>
+  </div>-->
+
+<!--</div>-->
