@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule} from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 // SERVICIOS
 import { HeroesService } from '../services/heroes.service';
@@ -46,12 +48,14 @@ import { KeysPipe } from './pipes/keys.pipe';
     BrowserModule,
     APP_ROUTING,
     HttpModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule,
+    Ng2SearchPipeModule
   ],
   providers: [
     HeroesService,
     ActorsService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

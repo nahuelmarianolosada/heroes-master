@@ -10,7 +10,7 @@ import {Router, ActivatedRoute} from "@angular/router";
 })
 export class ActorComponent implements OnInit {
 
-  actorURL:string = "http://localhost:8080/heroes/actor";
+  heroesURL:string = "http://localhost:8080/heroes";
   nuevo:boolean = false;
   id:string;
 
@@ -30,12 +30,7 @@ export class ActorComponent implements OnInit {
       this.id = parametros['id'];
 
       if( this.id == "nuevo" ){
-        this.actor = {
-          actorId:0,
-          firstName:" ",
-          lastName:" ",
-          lastUpdate: new Date().getTime()
-        }
+       this.initNewActor();
       }else{
         this._actorService.get(this.id)
           .subscribe( data => {
@@ -53,21 +48,36 @@ export class ActorComponent implements OnInit {
   }
 
 
+
+  initNewActor(){
+    this.actor = {
+      actorId:0,
+      firstName:" ",
+      lastName:" ",
+      lastUpdate: new Date().getTime()
+    }
+  }
+
+
+
   guardar(){
     this.actor.lastUpdate = new Date().getTime();
-    //debugger;
+
     if(this.id == "nuevo"){
       this._actorService.newActor(this.actor).subscribe((res: Response) => {
-        this.router.navigate(['/actores', res]);
+        this.router.navigate(['actors']);
       }, error => {console.log(error)});
     }else{
       this._actorService.updateActor(this.actor).subscribe((res: Response) => {
-        this.router.navigate(['/actores', res]);
-      }, error => {console.log(error)});
+        debugger;
+        this.router.navigate(['actors']);
+      }, error => {debugger; console.log(error);});
     }
-
-
-
   }
+
+
+
+
+
 
 }

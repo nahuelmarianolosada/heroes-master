@@ -5,8 +5,6 @@ import 'rxjs/Rx';
 import { Actor } from "../app/interfaces/actor.interface";
 import {Observable} from "rxjs/Observable";
 import {HttpHeaders} from "@angular/common/http";
-/*import {Observable} from "rxjs/Observable";*/
-/*import {forEach} from "@angular/router/src/utils/collection";*/
 
 
 
@@ -49,34 +47,40 @@ export class ActorsService {
 
 
 
+  deleteActor(actor: Actor){
+
+    return this.http.delete(this.actorsURL + "/" + actor.actorId, this.options)
+      .map( res =>
+        res.json()
+      ).catch(this.handleErrorPromise);
+  }
+
+
+
   getActors() {
-
-
      return this.http.get(this.actorsURL)
                             .map( res =>
                               res.json()
                             ).catch(this.handleErrorPromise);
-
   }
 
 
 
   get(id:string) {
-
-
     return this.http.get(this.actorsURL + "/" + id)
       .map( res =>
         res.json()
       ).catch(this.handleErrorPromise);
-
   }
 
 
   private handleErrorObservable (error: Response | any) {
+    debugger;
     console.error(error.message || error);
     return Observable.throw(error.message || error);
   }
   private handleErrorPromise (error: Response | any) {
+    debugger;
     console.error(error.message || error);
     return Promise.reject(error.message || error);
   }
