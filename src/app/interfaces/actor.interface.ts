@@ -3,4 +3,5 @@ export interface Actor{
   firstName:string;
   lastName:string;
   lastUpdate:number;
+  filmInfo?:string;
 }

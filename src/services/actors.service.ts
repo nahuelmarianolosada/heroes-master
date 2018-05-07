@@ -74,6 +74,16 @@ export class ActorsService {
   }
 
 
+
+  getInfo(actor:Actor) {
+    return this.http.get(this.actorsURL + "/info/" + actor.actorId)
+      .map( res =>
+        res.json()
+      ).catch(this.handleErrorPromise);
+  }
+
+
+
   private handleErrorObservable (error: Response | any) {
     debugger;
     console.error(error.message || error);

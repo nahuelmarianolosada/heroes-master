@@ -47,8 +47,13 @@
           <td class="col-sm-1 ">{{actors[k].actorId}}</td>
           <td class="col-sm-3">{{actors[k].firstName}}</td>
           <td class="col-sm-3">{{actors[k].lastName}}</td>
-          <td class="col-sm-3  ">{{actors[k].lastUpdate | date : 'dd/MM/yyyy'}}</td>
+          <td class="col-sm-3  ">{{actors[k].lastUpdate | date : 'hh:mm:ss dd/MM/yyyy '}}</td>
           <td class="col-sm-2">
+            <button type="button" class="btn btn-outline-primary"
+                    data-toggle="modal" data-target="#viewInfoModal"
+                    (click)="viewInfo(actors[k])">
+              <div style='text-align:center;'><i class="fa fa-eye"></i></div>
+            </button>
             <button type="button" class="btn btn-outline-dark" [routerLink]="['/actor', actors[k].actorId]">
               <div style='text-align:center;'><i class="fa fa-edit"></i></div>
             </button>
@@ -60,7 +65,9 @@
           </td>
         </tr>
         </tbody>
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+        <pagination-controls (pageChange)="p = $event" ></pagination-controls>
+
       </table>
 
       <div *ngIf="(actors | keys).length === 0 && !loading" class="alert alert-info" >Sin Registros que mostrar</div>
@@ -71,20 +78,18 @@
 </div>
 
 
-<!-- Modal -->
+<!-- Modal DELETE -->
 <div id="confirmDeleteModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Eliminar el siguiente registro?</h5>
-        <button id="closeExampleModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button id="closeConfirmDeleteModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
       <div class="modal-body">
         Confirma eliminar?
-
-
         <div class="card animated fadeIn fast" *ngIf="actorSelected != undefined">
           <div class="card-body">
             <h5 class="card-title">{{actorSelected.lastName}}</h5>
@@ -106,6 +111,55 @@
     </div>
   </div>
 </div>
+
+
+
+
+<!-- Modal VIEW -->
+<div id="viewInfoModal" class="modal fade" tabindex="0" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{actorSelected.firstName}} {{actorSelected.lastName}} </h5>
+        <button id="closeViewInfoModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card animated fadeIn fast" *ngIf="actorSelected != undefined">
+          <div class="card-body">
+            <h5 class="card-title">ID: {{actorSelected.actorId}}</h5>
+            <p class="card-text">
+              <small class="text-muted">Nombre: </small>
+              {{actorSelected.firstName}}
+            </p>
+            <p class="card-text">
+              <small class="text-muted">Apellido: </small>
+              {{actorSelected.lastName}}
+            </p>
+            <p class="card-text" *ngIf="actorSelected.filmInfo">
+              <small class="text-muted">Peliculas </small>
+              {{actorSelected.filmInfo}}
+            </p>
+            <div *ngIf="!actorSelected.filmInfo" class="alert alert-info" ><strong>Sin informacion Adicional.</strong></div>
+            <p class="card-text" *ngIf="actorSelected.lastUpdate">
+              <small class="text-muted">Última actualización</small>
+              {{actorSelected.lastUpdate | date: 'dd/MM/yyyy'}}
+            </p>
+
+          </div>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 
 <!--<div class="card animated fadeIn fast " *ngFor="let actor of actors; let i = index" >

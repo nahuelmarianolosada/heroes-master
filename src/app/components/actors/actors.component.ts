@@ -25,20 +25,17 @@ export class ActorsComponent implements OnInit {
 
   constructor(private _actorsService: ActorsService, private _router: Router) {
     console.log('Constructor Actors');
-    this._actorsService.getActors()
-        .subscribe( data => {
-              this.actors = data;
-              this.loading = false;
-        });
-    this.initNewActor(this.actorSelected);
+    this.getAll();
+    this.actorSelected = this.initNewActor();
 
   }
 
 
   // Ya está terminada la carga
   ngOnInit() {
-
+    this.actorSelected = this.initNewActor();
   }
+
 
 
   verActor(idx: number) {
@@ -52,21 +49,45 @@ export class ActorsComponent implements OnInit {
   }
 
 
-  initNewActor(actor : Actor){
-    actor = {
+  initNewActor(){
+    return {
       actorId:0,
-      firstName:" ",
-      lastName:" ",
+      firstName:"",
+      lastName:"",
       lastUpdate: new Date().getTime()
     }
   }
 
 
+  getAll(){
+    this._actorsService.getActors()
+      .subscribe( data => {
+        this.actors = data;
+        this.loading = false;
+      });
+  }
+
+
+
   delActor(actor: Actor){
     this._actorsService.deleteActor(actor).subscribe(res  =>
-          {  this._router.navigate(['actors'])}
+          {  this.getAll(); this._router.navigate(['actors'])}
     );
+  }
 
+
+  viewInfo(actor: Actor){
+    this._actorsService.getInfo(actor).subscribe(res  =>
+      {
+          this.actorSelected = {
+                    actorId:res.actorId,
+                    firstName:res.firstName,
+                    lastName:res.lastName,
+                    lastUpdate: res.lastUpdate,
+                    filmInfo: res.filmInfo
+          };
+      }
+    );
   }
 
 }
