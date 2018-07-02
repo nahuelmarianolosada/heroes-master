@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {Heroe, HeroesService} from '../../../services/heroes.service';
+import { HeroesService} from '../../../services/heroes.service';
 
 @Component({
   selector: 'app-heroe',

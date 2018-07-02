@@ -1,14 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { HttpModule } from '@angular/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 // SERVICIOS
 import { HeroesService } from '../services/heroes.service';
 import { ActorsService } from "../services/actors.service";
+import {AuthService} from "../services/auth.service";
+import { Interceptor } from "./app.interceptor";
 
 // ROUTES
 import {APP_ROUTING} from './app.routes';
@@ -23,12 +25,15 @@ import { HeroesComponent } from './components/heroes/heroes.component';
 import { HeroeComponent } from './components/heroe/heroe.component';
 import { BuscadorComponent } from './components/buscador/buscador.component';
 import { ActorsComponent } from './components/actors/actors.component';
-import { ActorComponent } from './components/actors/actor/actor.component'
-
+import { ActorComponent } from './components/actors/actor/actor.component';
+import { LoginComponent } from './components/login/login.component';
+import { TokenStorage } from './token.storage'
 
 
 //  PIPES ng g p pipes/keys
 import { KeysPipe } from './pipes/keys.pipe';
+
+
 
 @NgModule({
   declarations: [
@@ -41,7 +46,8 @@ import { KeysPipe } from './pipes/keys.pipe';
     BuscadorComponent,
     ActorsComponent,
     ActorComponent,
-    KeysPipe
+    KeysPipe,
+    LoginComponent
   ],
   imports: [
     HttpClientModule,
@@ -54,7 +60,15 @@ import { KeysPipe } from './pipes/keys.pipe';
   ],
   providers: [
     HeroesService,
-    ActorsService
+    ActorsService,
+    AuthService,
+    TokenStorage,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      multi: true
+    }
+
   ],
   bootstrap: [ AppComponent ]
 })

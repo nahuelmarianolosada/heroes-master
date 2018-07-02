@@ -22,6 +22,7 @@ export class ActorsComponent implements OnInit {
   actorSelected: Actor;
   p: number = 1; //paginator
   loading: boolean = true;
+  filter: any = '';
 
   constructor(private _actorsService: ActorsService, private _router: Router) {
     console.log('Constructor Actors');
