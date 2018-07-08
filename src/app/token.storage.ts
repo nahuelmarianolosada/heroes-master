@@ -14,16 +14,18 @@ export class TokenStorage {
   constructor() { }
 
   signOut() {
-    window.sessionStorage.removeItem(TOKEN_KEY);
-    window.sessionStorage.clear();
+    /*localStorage.removeItem("currentUser");*/
+   /* window.sessionStorage.removeItem("currentUser");*/
+    localStorage.removeItem(TOKEN_KEY);
+    localStorage.clear();
   }
 
   public saveToken(token: string) {
-    window.sessionStorage.removeItem(TOKEN_KEY);
-    window.sessionStorage.setItem(TOKEN_KEY,  token);
+    localStorage.removeItem(TOKEN_KEY);
+    localStorage.setItem(TOKEN_KEY,  token);
   }
 
   public getToken(): any {
-    return sessionStorage.getItem(TOKEN_KEY);
+    localStorage.getItem(TOKEN_KEY);
   }
 }

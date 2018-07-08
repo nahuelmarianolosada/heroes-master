@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import {AuthService} from "../../../../services/auth.service";
 import {showWarningOnce} from "tslint/lib/error";
+import {TokenStorage} from "../../../token.storage";
+import {stringify} from "@angular/core/src/util";
+import {current} from "codelyzer/util/syntaxKind";
 
 @Component({
   selector: 'app-navbar',
@@ -11,12 +14,17 @@ import {showWarningOnce} from "tslint/lib/error";
 export class NavbarComponent implements OnInit {
 
 
- /* loguedUser: any;*/
+  loguedUser: any;
 
-  constructor(private router:Router, private authService: AuthService) { }
+  constructor(private router:Router, private authService: AuthService, private tokenStorage: TokenStorage) { }
 
   ngOnInit() {
-    /*this.loguedUser = this.getLogedUser();*/
+
+    this.loguedUser = this.tokenStorage.getToken() == null ? JSON.parse(localStorage.getItem('AuthToken')) : this.tokenStorage.getToken();
+    /*this.currentUser = this.loguedUser == null ? null : window.sessionStorage.getItem("AuthToken");*/
+
+    debugger;
+    /*console.log("Usuario actual Logueado : " + this.loguedUser.token.email + " " + this.loguedUser.token.role);*/
   }
 
 
@@ -27,7 +35,14 @@ export class NavbarComponent implements OnInit {
 
 
   getLogedUser(){
-    return this.authService.getLogedUser();
+    return JSON.parse(localStorage.getItem('AuthToken'));
+    /*return this.loguedUser != null ? this.loguedUser : this.tokenStorage.getToken().token;*/
+  }
+
+
+  logout(){
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
 }

@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import {Http, RequestOptions, Response, HttpModule} from '@angular/http';
+import {Http, RequestOptions, Response, HttpModule, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
 import { Actor } from "../app/interfaces/actor.interface";
 import {Observable} from "rxjs/Observable";
-import {HttpHeaders} from "@angular/common/http";
 import {TokenStorage} from "../app/token.storage";
 
 
@@ -21,12 +20,21 @@ export class ActorsService {
 
   constructor(private http: Http, private tokenStorage: TokenStorage) {
     /*'Bearer ' + this.tokenStorage.getToken()*/
-    console.log(this.tokenStorage.getToken());
-    this.headers = new Headers({ 'Content-Type': 'application/json',
-      'Accept': 'q=0.8;application/json;q=0.9' });
-    this.headers.append('Authorization' , this.tokenStorage.getToken());
+debugger;
+    this.headers = new Headers({ 'Content-Type': 'application/json', 'withCredentials': 'true' });
+    console.log(JSON.parse(localStorage.getItem('AuthToken')).token);
+    this.headers.append('Authorization' , JSON.parse(localStorage.getItem('AuthToken')).token);
+    /*let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+    headers.append('Authorization', JSON.parse(this.tokenStorage.getToken()).token);
+
+    let options = new RequestOptions({ headers: Headers });*/
+
+
+
     debugger;
-    this.options = new RequestOptions( this.headers );
+    this.options = new RequestOptions( { headers: this.headers } );
     console.log('Servicio listo para usar');
   }
 
@@ -63,7 +71,7 @@ export class ActorsService {
 
 
   getActors() {
-     return this.http.get(this.actorsURL)
+     return this.http.get(this.actorsURL, this.options)
                             .map( res =>
                               res.json()
                             ).catch(this.handleErrorPromise);
@@ -72,7 +80,7 @@ export class ActorsService {
 
 
   get(id:string) {
-    return this.http.get(this.actorsURL + "/" + id)
+    return this.http.get(this.actorsURL + "/" + id, this.options)
       .map( res =>
         res.json()
       ).catch(this.handleErrorPromise);
@@ -81,7 +89,7 @@ export class ActorsService {
 
 
   getInfo(actor:Actor) {
-    return this.http.get(this.actorsURL + "/info/" + actor.actorId)
+    return this.http.get(this.actorsURL + "/info/" + actor.actorId, this.options)
       .map( res =>
         res.json()
       ).catch(this.handleErrorPromise);

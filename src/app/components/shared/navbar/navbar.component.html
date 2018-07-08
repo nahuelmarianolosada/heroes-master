@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">
     <img src="assets/img/A-64.png" width="30" height="30" class="d-inline-block align-top" alt="">
     Heroes</a>
@@ -27,5 +27,31 @@
       <input class="form-control mr-sm-2" type="text" placeholder="Buscar Héroe" aria-label="Buscar" ngModel="BuscadorComponent" (change)="buscarHeroe(buscarTexto.value)" #buscarTexto>
       <button class="btn btn-outline-primary my-2 my-sm-0" type="button" (click)="buscarHeroe(buscarTexto.value)" >Buscar</button>
     </form>-->
+ <!--   {{currentUser}}-->
+    <!--<div class="form-inline">-->
+      <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+      <!--<button class="btn btn-outline-success my-2 my-sm-0" (click)="logout()">Salir</button>-->
+
+    <div class="dropdown">
+      <button class="btn btn-outline-dark dropdown-toggle btn-lg" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{loguedUser.email}}
+      </button>
+      <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#"><i class="fa fa-user-circle-o"></i> Perfil</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" (click)="logout()"><i class="fa fa-power-off"></i> Salir</a>
+      </div>
+    </div>
+
+    <!--
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{loguedUser.email}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" (click)="logout()">Salir</a>
+        </div>
+      </li>-->
+   <!-- </div>-->
   </div>
 </nav>

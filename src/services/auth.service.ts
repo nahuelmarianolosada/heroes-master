@@ -3,6 +3,7 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import {Http, Headers, Response} from "@angular/http";
 import {TokenStorage} from "../app/token.storage";
+import {Interceptor} from "../app/app.interceptor";
 @Injectable()
 export class AuthService {
 
@@ -20,11 +21,12 @@ export class AuthService {
         /*let token = response.json() && response.json().token;*/
         let token = response.headers.get("Authorization");
         if (token) {
+          let body = response.text();
           // store username and jwt token in local storage to keep user logged in between page refreshes
-          /*localStorage.setItem('currentUser', JSON.stringify({ email: email, token: token }));*/
-          this.tokenStorage.saveToken(JSON.stringify({ email: email, token: token }));
-
+          /*localStorage.setItem('currentUser', JSON.stringify({ email: email }));*/
+          this.tokenStorage.saveToken(JSON.stringify({ email: email, role: body, token: token }));
           // return true to indicate successful login
+          console.log(this.tokenStorage.getToken());
           return true;
         } else {
           // return false to indicate failed login

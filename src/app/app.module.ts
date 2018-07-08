@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -62,14 +62,10 @@ import { KeysPipe } from './pipes/keys.pipe';
     HeroesService,
     ActorsService,
     AuthService,
-    TokenStorage,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: Interceptor,
-      multi: true
-    }
-
+    TokenStorage
   ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
+
+/*platformBrowserDynamic().bootstrapModule(AppModule);*/
