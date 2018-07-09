@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">
     <img src="assets/img/A-64.png" width="30" height="30" class="d-inline-block align-top" alt="">
     Heroes</a>
@@ -33,8 +33,8 @@
       <!--<button class="btn btn-outline-success my-2 my-sm-0" (click)="logout()">Salir</button>-->
 
     <div class="dropdown">
-      <button class="btn btn-outline-dark dropdown-toggle btn-lg" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {{loguedUser.email}}
+      <button class="btn btn-outline-light dropdown-toggle btn-lg" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{getLogedUser().email}}
       </button>
       <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" href="#"><i class="fa fa-user-circle-o"></i> Perfil</a>

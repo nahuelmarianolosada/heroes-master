@@ -32,7 +32,7 @@ export class AuthService {
           // return false to indicate failed login
           return false;
         }
-      }).catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+      }).catch((error:any) => Observable.throw(error || 'Server error'));
   }
 
   /*getToken(): String {

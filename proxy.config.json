@@ -1,5 +1,5 @@
 {
-  "/api/*": {
+  "/heroes/*": {
   "target": "http://localhost:8080/heroes",
   "secure": false
   }

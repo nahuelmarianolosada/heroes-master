@@ -21,7 +21,7 @@ export class ActorsService {
   constructor(private http: Http, private tokenStorage: TokenStorage) {
     /*'Bearer ' + this.tokenStorage.getToken()*/
 debugger;
-    this.headers = new Headers({ 'Content-Type': 'application/json', 'withCredentials': 'true' });
+    this.headers = new Headers({ 'Content-Type': 'application/json', 'withCredentials': 'true','Access-Control-Allow-Origin': 'true' });
     console.log(JSON.parse(localStorage.getItem('AuthToken')).token);
     this.headers.append('Authorization' , JSON.parse(localStorage.getItem('AuthToken')).token);
     /*let headers = new Headers();

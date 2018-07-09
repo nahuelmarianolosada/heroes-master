@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
 
-    this.loguedUser = this.tokenStorage.getToken() == null ? JSON.parse(localStorage.getItem('AuthToken')) : this.tokenStorage.getToken();
+    this.loguedUser = JSON.parse(localStorage.getItem('AuthToken'));
     /*this.currentUser = this.loguedUser == null ? null : window.sessionStorage.getItem("AuthToken");*/
 
     debugger;

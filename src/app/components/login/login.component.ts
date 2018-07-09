@@ -36,7 +36,13 @@ export class LoginComponent implements OnInit{
         }
       }, error => {
         this.loading = false;
-        this.error = error;
+
+        if(error.status === 401 ){
+          this.error = 'Nombre de Usuario y/o contaseña incorrecto.';
+        }else{
+          this.error = error;
+        }
+
       });
   }
 
