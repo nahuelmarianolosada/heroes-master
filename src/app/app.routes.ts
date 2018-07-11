@@ -11,7 +11,7 @@ import { BuscadorComponent } from "./components/buscador/buscador.component";
 import {ActorsComponent} from "./components/actors/actors.component";
 import {ActorComponent} from "./components/actors/actor/actor.component";
 import { LoginComponent } from "./components/login/login.component";
-
+import { UsersComponent } from "./components/users/users.component";
 
 const APP_ROUTES: Routes = [
   {path: 'login', component: LoginComponent},
@@ -22,6 +22,7 @@ const APP_ROUTES: Routes = [
   {path: 'buscar/:termino', component: BuscadorComponent},
   {path: 'actors', component: ActorsComponent},
   {path: 'actor/:id', component: ActorComponent},
+  {path: 'users', component: UsersComponent},
   {path: '**', pathMatch: 'full', redirectTo: 'login'}
 ];
 

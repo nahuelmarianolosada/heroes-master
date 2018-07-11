@@ -9,6 +9,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 // SERVICIOS
 import { HeroesService } from '../services/heroes.service';
 import { ActorsService } from "../services/actors.service";
+import { UsersService } from "../services/users.service";
 import {AuthService} from "../services/auth.service";
 import { Interceptor } from "./app.interceptor";
 
@@ -28,6 +29,7 @@ import { ActorsComponent } from './components/actors/actors.component';
 import { ActorComponent } from './components/actors/actor/actor.component';
 import { LoginComponent } from './components/login/login.component';
 import { TokenStorage } from './token.storage'
+import { UsersComponent } from './components/users/users.component';
 
 
 //  PIPES ng g p pipes/keys
@@ -47,7 +49,8 @@ import { KeysPipe } from './pipes/keys.pipe';
     ActorsComponent,
     ActorComponent,
     KeysPipe,
-    LoginComponent
+    LoginComponent,
+    UsersComponent
   ],
   imports: [
     HttpClientModule,
@@ -62,7 +65,8 @@ import { KeysPipe } from './pipes/keys.pipe';
     HeroesService,
     ActorsService,
     AuthService,
-    TokenStorage
+    TokenStorage,
+    UsersService
   ],
   bootstrap: [ AppComponent ]
 })
