@@ -2,10 +2,9 @@
 <div class="card-columns">
 
   <div class="card animated fadeIn fast " *ngFor="let user of users; let i = index" >
-    <!--<img class="card-img-top" src="{{user.img}}" alt="{{user.nombre}}">-->
+    <img class="card-img-top" src="{{user.roles[0].key == 'ROLE_ADMIN' ? 'assets/img/administrador.png' : 'assets/img/Usuario.png'}}" alt="{{user.nombre}}">
     <div class="card-body">
-      <h5 class="card-title">{{user.firstName}}</h5>
-      <p class="card-text">{{user.lastName}}</p>
+      <h5 class="card-title">{{user.firstName}} {{user.lastName}}</h5>
       <p class="card-text">{{user.email}}</p>
       <p class="card-text"><small class="text-muted">{{user.roles[0].name}}</small></p>
     </div>

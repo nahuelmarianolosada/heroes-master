@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {User} from "../../interfaces/user.interface";
 import {Router} from "@angular/router";
 import {UsersService} from "../../../services/users.service";
-import {tryCatch} from "rxjs/util/tryCatch";
-import {tryParse} from "selenium-webdriver/http";
+
 
 @Component({
   selector: 'app-users',
