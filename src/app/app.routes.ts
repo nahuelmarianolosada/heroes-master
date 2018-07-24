@@ -12,6 +12,7 @@ import {ActorsComponent} from "./components/actors/actors.component";
 import {ActorComponent} from "./components/actors/actor/actor.component";
 import { LoginComponent } from "./components/login/login.component";
 import { UsersComponent } from "./components/users/users.component";
+import {UserComponent} from "./components/users/user/user.component";
 
 const APP_ROUTES: Routes = [
   {path: 'login', component: LoginComponent},
@@ -23,6 +24,7 @@ const APP_ROUTES: Routes = [
   {path: 'actors', component: ActorsComponent},
   {path: 'actor/:id', component: ActorComponent},
   {path: 'users', component: UsersComponent},
+  {path: 'user/:id', component: UserComponent},
   {path: '**', pathMatch: 'full', redirectTo: 'login'}
 ];
 

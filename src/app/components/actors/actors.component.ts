@@ -23,6 +23,7 @@ export class ActorsComponent implements OnInit {
   p: number = 1; //paginator
   loading: boolean = true;
   filter: any = '';
+  error: string;
 
   constructor(private _actorsService: ActorsService, private _router: Router) {
     console.log('Constructor Actors');
@@ -65,6 +66,9 @@ export class ActorsComponent implements OnInit {
       .subscribe( data => {
         this.actors = data;
         this.loading = false;
+      }, error => {
+        this.loading = false;
+        this.error = error;
       });
   }
 

@@ -1,0 +1,97 @@
+<h3>Usuario
+  <small >{{user.id == 0 ? 'Nuevo' : user.id}}</small>
+</h3>
+
+<hr>
+
+<div class="row animated fadeIn fast">
+  <div class="col-md-12 ">
+    <form (ngSubmit)="guardar()">
+      <div class="alert alert-primary d-none" role="alert">
+      </div>
+      <div class="form-group">
+        <label>Nombre</label>
+        <input [(ngModel)]="user.firstName"
+               name="first"
+               type="text"
+               class="form-control"
+               placeholder="Nombre del usuario"
+               required autofocus>
+      </div>
+
+      <div class="form-group">
+        <label>Apellido</label>
+        <input [(ngModel)]="user.lastName"
+               name="last"
+               type="text"
+               class="form-control"
+               placeholder="Apellido del Usuario"
+               required>
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input [(ngModel)]="user.email"
+               name="email"
+               type="text"
+               class="form-control"
+               placeholder="Email"
+               required>
+      </div>
+
+
+      <div class="form-group" *ngFor="let rol of user.roles; let i = index">
+        <label>Rol</label>
+        <input
+          [(ngModel)]="rol.name"
+               name="Rol"
+               type="text"
+               class="form-control"
+               placeholder="Rol"
+               required>
+      </div>
+
+
+      <div class="form-group" [hidden]="user.password != ''">
+        <label>Password</label>
+        <input [(ngModel)]="user.password"
+               name="password"
+               type="text"
+               class="form-control"
+               placeholder="Password"
+               required>
+      </div>
+
+
+
+      <div class="form-group" [hidden]="user.password != ''">
+        <label>Repetir Password</label>
+        <input [(ngModel)]="repassword"
+               name="repassword"
+               type="text"
+               class="form-control"
+               placeholder="Repassword"
+               required>
+      </div>
+
+
+      <div class="row">
+        <div class="col text-right">
+          <div class="form-group">
+            <div class="float-right">
+              <button class="btn btn-outline-danger"
+                      [routerLink]="['/users']">
+                Regresar
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col text-left">
+          <button  type="submit" class="btn btn-outline-primary">Guardar</button>
+        </div>
+      </div>
+
+
+    </form>
+  </div>
+</div>

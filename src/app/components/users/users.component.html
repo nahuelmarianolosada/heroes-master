@@ -1,4 +1,19 @@
 <h1>Usuarios <small>Todos</small></h1>
+<div class="row rowWithMargin">
+  <div class="col-md-6 text-left">
+    <button class="button btn-outline-primary btn-lg" type="button" name="btnNuevoUsuario" [routerLink]="['/user','nuevo']">
+      <div style='text-align:center;'><i class="fa fa-plus"></i> Agregar</div>
+    </button>
+  </div>
+  <div class="col-md-6 text-right">
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+        <input class="form-control" type="text" name="search" [(ngModel)]="filter">
+      </div>
+    </div>
+  </div>
+</div>
 <div class="card-columns">
 
   <div class="card animated fadeIn fast " *ngFor="let user of users; let i = index" >
@@ -10,7 +25,7 @@
     </div>
 
 
-    <button (click)="verHeroe(i)" type="button" class="btn btn-outline-primary btn-block">Ver más...</button>
+    <button (click)="verUser(user.id)" type="button" class="btn btn-outline-primary btn-block">Ver más...</button>
     <!--<a [routerLink]="['/heroe',i]" class="btn btn-outline-primary btn-block" >Ver más...</a>-->
   </div>
 

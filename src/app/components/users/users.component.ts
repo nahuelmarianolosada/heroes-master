@@ -15,6 +15,7 @@ export class UsersComponent implements OnInit {
   userSelected: User;
   p: number = 1; //paginator
   loading: boolean = true;
+  error : string;
   filter: any = '';
 
   constructor(private _usersService: UsersService, private _router: Router) {
@@ -67,8 +68,12 @@ export class UsersComponent implements OnInit {
   getAll(){
     this._usersService.getUsers()
       .subscribe( data => {
+        debugger;
         this.users = data;
         this.loading = false;
+      }, error => {
+        this.loading = false;
+        this.error = error;
       });
   }
 
