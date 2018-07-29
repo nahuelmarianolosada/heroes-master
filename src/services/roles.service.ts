@@ -4,16 +4,15 @@ import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
 import { Observable } from "rxjs/Observable";
 import { TokenStorage } from "../app/token.storage";
-import { User } from "../app/interfaces/user.interface";
+import {Role} from "../app/interfaces/role.interface";
 
 @Injectable()
-export class UsersService {
-
-  usersURL:string = "http://localhost:8080/heroes/users";
+export class RolesService {
+  rolesURL:string = "http://localhost:8080/heroes/roles";
   headers: Headers;
   options: RequestOptions;
 
- /* users: any[] = [];*/
+  roles: any[] = [];
 
   constructor(private http: Http, private tokenStorage: TokenStorage) {
     this.headers = new Headers({ 'Content-Type': 'application/json', 'withCredentials': 'true','Access-Control-Allow-Origin': 'true' });
@@ -27,8 +26,8 @@ export class UsersService {
 
 
 
-  newUser(user: User){
-    return this.http.post(this.usersURL, user, this.options)
+  newRole(role: Role){
+    return this.http.post(this.rolesURL, role, this.options)
       .map( (res: Response) => res.json() )
       .catch(this.handleErrorObservable);
   }
@@ -37,8 +36,8 @@ export class UsersService {
 
 
 
-  updateUser(user: User){
-    return this.http.put(this.usersURL, user, this.options)
+  updateRole(role: Role){
+    return this.http.put(this.rolesURL, role, this.options)
       .map( res =>
         res.json()
       ).catch(this.handleErrorPromise);
@@ -46,9 +45,9 @@ export class UsersService {
 
 
 
-  deleteUser(user: User){
+  deleteRole(role: Role){
 
-    return this.http.delete(this.usersURL + "/" + user.id, this.options)
+    return this.http.delete(this.rolesURL + "/" + role.id, this.options)
       .map( res =>
         res.json()
       ).catch(this.handleErrorPromise);
@@ -56,8 +55,8 @@ export class UsersService {
 
 
 
-  getUsers() {
-    return this.http.get(this.usersURL, this.options)
+  getRoles() {
+    return this.http.get(this.rolesURL, this.options)
       .map( res =>
         res.json()
       ).catch(this.handleErrorPromise);
@@ -66,7 +65,7 @@ export class UsersService {
 
 
   get(id:string) {
-    return this.http.get(this.usersURL + "/" + id, this.options)
+    return this.http.get(this.rolesURL + "/" + id, this.options)
       .map( res =>
         res.json()
       ).catch(this.handleErrorPromise);
@@ -74,31 +73,24 @@ export class UsersService {
 
 
 
-  getInfo(user:User) {
-    return this.http.get(this.usersURL + "/info/" + user.id, this.options)
+  getInfo(role:Role) {
+    return this.http.get(this.rolesURL + "/info/" + role.id, this.options)
       .map( res =>
         res.json()
       ).catch(this.handleErrorPromise);
   }
 
-  initNewUser(user?:any){
-    return user ? {
-      id: user.id,
-      firstName:user.firstName,
-      lastName:user.lastName,
-      email: user.email,
-      password: ""
-    } :
+  initNewRol(rol?:any){
+    return rol ? {
+      id: rol.id,
+      name:rol.firstName,
+      key:rol.lastName} :
       {
         id:0,
-        firstName:"",
-        lastName:"",
-        email: "",
-        password: ""
+        name:"",
+        key:""
       }
   }
-
-
 
   private handleErrorObservable (error: Response | any) {
     debugger;
@@ -111,26 +103,4 @@ export class UsersService {
     return Promise.reject(error.status || error);
   }
 
-
-
-  /*getUser(idx: string): User {
-   return this.users[idx];
-   }*/
-
-
-  /*findUser(termino: string): User[] {
-   let heroesArr: User[] = [];
-   termino = termino.toLowerCase();
-
-   for (let user of this.users) {
-   let nombre = user.first_name.toLowerCase();
-   if (nombre.indexOf(termino) >= 0) {
-   heroesArr.push(user);
-   }
-   }
-   return heroesArr;
-   }*/
-
-
 }
-

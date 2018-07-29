@@ -21,14 +21,13 @@ export class UsersComponent implements OnInit {
   constructor(private _usersService: UsersService, private _router: Router) {
     console.log('Constructor Users');
     this.getAll();
-    this.userSelected = this.initNewUser();
+    this.userSelected = this._usersService.initNewUser();
 
   }
 
 
   // Ya está terminada la carga
   ngOnInit() {
-    this.userSelected = this.initNewUser();
   }
 
 
@@ -44,22 +43,6 @@ export class UsersComponent implements OnInit {
   }
 
 
-   initNewUser(user?:any){
-    return user ? {
-      id: user.id,
-      firstName:user.firstName,
-      lastName:user.lastName,
-      email: user.email,
-      password: ""
-    } :
-     {
-      id:0,
-      firstName:"",
-      lastName:"",
-      email: "",
-      password: ""
-    }
-  }
 
 
 
@@ -89,16 +72,7 @@ export class UsersComponent implements OnInit {
   viewInfo(user: User){
     this._usersService.getInfo(user).subscribe(res  =>
       {
-
-        this.userSelected = this.initNewUser(res);
-
-       /* this.userSelected = {
-          userId:res.userId,
-          firstName:res.firstName,
-          lastName:res.lastName,
-          lastUpdate: res.lastUpdate,
-          filmInfo: res.filmInfo
-        };*/
+        this.userSelected = this._usersService.initNewUser(res);
       }
     );
   }

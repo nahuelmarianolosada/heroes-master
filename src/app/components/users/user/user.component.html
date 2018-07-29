@@ -1,5 +1,5 @@
 <h3>Usuario
-  <small >{{user.id == 0 ? 'Nuevo' : user.id}}</small>
+  <small>{{user.id == 0 ? 'Nuevo' : user.id}}</small>
 </h3>
 
 <hr>
@@ -40,15 +40,16 @@
       </div>
 
 
-      <div class="form-group" *ngFor="let rol of user.roles; let i = index">
-        <label>Rol</label>
-        <input
-          [(ngModel)]="rol.name"
-               name="Rol"
-               type="text"
-               class="form-control"
-               placeholder="Rol"
-               required>
+      <div class="form-group">
+        <div class="btn-group" *ngFor="let rol of user.roles; let i = index">
+          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">
+            {{rol.name}}
+          </button>
+          <div class="dropdown-menu">
+            <button class="dropdown-item" type="button">{{rol.name}}</button>
+          </div>
+        </div>
       </div>
 
 
@@ -63,7 +64,6 @@
       </div>
 
 
-
       <div class="form-group" [hidden]="user.password != ''">
         <label>Repetir Password</label>
         <input [(ngModel)]="repassword"
@@ -74,6 +74,11 @@
                required>
       </div>
 
+
+      <div class="form-group">
+        <label>Roles</label>
+        <app-roles></app-roles>
+      </div>
 
       <div class="row">
         <div class="col text-right">
@@ -87,7 +92,7 @@
           </div>
         </div>
         <div class="col text-left">
-          <button  type="submit" class="btn btn-outline-primary">Guardar</button>
+          <button type="submit" class="btn btn-outline-primary">Guardar</button>
         </div>
       </div>
 

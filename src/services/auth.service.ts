@@ -3,7 +3,7 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import {Http, Headers, Response} from "@angular/http";
 import {TokenStorage} from "../app/token.storage";
-import {Interceptor} from "../app/app.interceptor";
+import {JwtHelperService} from "@auth0/angular-jwt";
 @Injectable()
 export class AuthService {
 
@@ -39,6 +39,13 @@ export class AuthService {
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     var token = currentUser && currentUser.token;
     return token ? token : "";
+  }*/
+
+  /*public isAuthenticated(): boolean {
+    const token = this.tokenStorage.getToken();
+    // Check whether the token is expired and return
+    // true or false
+    return !this.jwtHelper.isTokenExpired(token);
   }*/
 
 

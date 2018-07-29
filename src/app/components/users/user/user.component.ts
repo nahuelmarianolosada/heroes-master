@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {User} from "../../../interfaces/user.interface";
 import {UsersService} from "../../../../services/users.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {RolesComponent} from "../../roles/roles.component";
 
 @Component({
   selector: 'app-user',
@@ -13,14 +14,11 @@ export class UserComponent implements OnInit {
   /*nuevo:boolean = false;*/
   id:string;
 
-  user:User = {
-    id:0,
-    firstName:"",
-    lastName:"",
-    email:"",
-    password:""
-  };
+  user:User;
   repassword:string;
+
+
+  /*rolesDisponibles:any[] = [];*/
 
   constructor(private _userService:UsersService,
               private router: Router,
@@ -29,9 +27,11 @@ export class UserComponent implements OnInit {
       console.log(parametros);
       debugger;
       this.id = parametros['id'];
+      this.user = this._userService.initNewUser();
+      /*this.rolesDisponibles = this._roleService.getRoles();*/
 
       if( this.id == "nuevo" ){
-        this.initNewUser();
+        /*this.rolesDisponibles = this._roleService.getRoles();*/
       }else{
         this._userService.get(this.id)
           .subscribe( data => {
@@ -51,18 +51,6 @@ export class UserComponent implements OnInit {
 
 
 
-  initNewUser(){
-    this.user = {
-      id:0,
-      firstName:"",
-      lastName:"",
-      email:"",
-      password:""
-    }
-    this.repassword ="";
-  }
-
-
 
   guardar(){
     if(this.id == "nuevo"){
@@ -76,6 +64,8 @@ export class UserComponent implements OnInit {
       }, error => {debugger; console.log(error);});
     }
   }
+
+
 
 
 

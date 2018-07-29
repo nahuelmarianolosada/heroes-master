@@ -1,3 +1,4 @@
+
 export interface User{
 
   id:number;
@@ -5,5 +6,4 @@ export interface User{
   lastName: string;
   email:string;
   password: string;
-
 }
