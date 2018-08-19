@@ -22,8 +22,6 @@ export class NavbarComponent implements OnInit {
 
     this.loguedUser = JSON.parse(localStorage.getItem('AuthToken'));
     /*this.currentUser = this.loguedUser == null ? null : window.sessionStorage.getItem("AuthToken");*/
-
-    debugger;
     /*console.log("Usuario actual Logueado : " + this.loguedUser.token.email + " " + this.loguedUser.token.role);*/
   }
 

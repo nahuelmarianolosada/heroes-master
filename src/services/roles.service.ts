@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
 import { Observable } from "rxjs/Observable";
 import { TokenStorage } from "../app/token.storage";
-import {Role} from "../app/interfaces/role.interface";
+import { Role } from "../app/interfaces/role.interface";
 
 @Injectable()
 export class RolesService {
@@ -18,7 +18,6 @@ export class RolesService {
     this.headers = new Headers({ 'Content-Type': 'application/json', 'withCredentials': 'true','Access-Control-Allow-Origin': 'true' });
     console.log(JSON.parse(localStorage.getItem('AuthToken')).token);
     this.headers.append('Authorization' , JSON.parse(localStorage.getItem('AuthToken')).token);
-    debugger;
     this.options = new RequestOptions( { headers: this.headers } );
     console.log('Servicio listo para usar');
   }
@@ -81,6 +80,7 @@ export class RolesService {
   }
 
   initNewRol(rol?:any){
+    debugger;
     return rol ? {
       id: rol.id,
       name:rol.firstName,

@@ -1,0 +1,11 @@
+<div class="form-group">
+  <div class="btn-group">
+    <select id="Id" class="hideLabel form-control" #Id="ngModel" [(ngModel)]="rolSeleccionado"
+            (change)="selectionChanged($event)">
+      <option [ngValue]="rol" *ngFor="let rol of roles; let i = index">
+        {{rol.name}}
+      </option>
+    </select>
+  </div>
+</div>
+

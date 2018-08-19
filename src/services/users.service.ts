@@ -19,7 +19,6 @@ export class UsersService {
     this.headers = new Headers({ 'Content-Type': 'application/json', 'withCredentials': 'true','Access-Control-Allow-Origin': 'true' });
     console.log(JSON.parse(localStorage.getItem('AuthToken')).token);
     this.headers.append('Authorization' , JSON.parse(localStorage.getItem('AuthToken')).token);
-    debugger;
     this.options = new RequestOptions( { headers: this.headers } );
     console.log('Servicio listo para usar');
   }
@@ -82,19 +81,22 @@ export class UsersService {
   }
 
   initNewUser(user?:any){
+    debugger;
     return user ? {
       id: user.id,
       firstName:user.firstName,
       lastName:user.lastName,
       email: user.email,
-      password: ""
+      password: "",
+      roles: user.roles
     } :
       {
         id:0,
         firstName:"",
         lastName:"",
         email: "",
-        password: ""
+        password: "",
+        roles: null
       }
   }
 

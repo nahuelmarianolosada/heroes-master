@@ -6,17 +6,23 @@
 
 <div class="row animated fadeIn fast">
   <div class="col-md-12 ">
-    <form (ngSubmit)="guardar()">
-      <div class="alert alert-primary d-none" role="alert">
-      </div>
-      <div class="form-group">
+    <form (ngSubmit)="guardar()" #userForm="ngForm">
+      <div class="form-group" [ngClass]="{
+        'has-danger': firstName.invalid && (firstName.dirty || firstName.touched),
+        'has-success': firstName.valid && (firstName.dirty || firstName.touched)}">
         <label>Nombre</label>
         <input [(ngModel)]="user.firstName"
-               name="first"
+               #firstName="ngModel"
+               name="firstName"
                type="text"
                class="form-control"
                placeholder="Nombre del usuario"
-               required autofocus>
+               required>
+        <div class="form-control-feedback" *ngIf="firstName.errors && (firstName.dirty || firstName.touched)" class="alert alert-danger">
+          <div [hidden]="!firstName.errors.required">
+            First Name is required!
+          </div>
+        </div>
       </div>
 
       <div class="form-group">
@@ -33,7 +39,7 @@
         <label>Email</label>
         <input [(ngModel)]="user.email"
                name="email"
-               type="text"
+               type="email"
                class="form-control"
                placeholder="Email"
                required>
@@ -53,7 +59,7 @@
       </div>
 
 
-      <div class="form-group" [hidden]="user.password != ''">
+      <div class="form-group" [hidden]="user.id != 0">
         <label>Password</label>
         <input [(ngModel)]="user.password"
                name="password"
@@ -64,7 +70,7 @@
       </div>
 
 
-      <div class="form-group" [hidden]="user.password != ''">
+      <div class="form-group" [hidden]="user.id != 0">
         <label>Repetir Password</label>
         <input [(ngModel)]="repassword"
                name="repassword"
@@ -77,7 +83,7 @@
 
       <div class="form-group">
         <label>Roles</label>
-        <app-roles></app-roles>
+        <cmb-rol *ngFor="let rol of user.roles; let i = index" [rolSeleccionado]="rol" [roles]="rolesDisponibles"></cmb-rol>
       </div>
 
       <div class="row">
@@ -92,7 +98,7 @@
           </div>
         </div>
         <div class="col text-left">
-          <button type="submit" class="btn btn-outline-primary">Guardar</button>
+          <button type="submit" class="btn btn-outline-primary" [disabled]="!userForm.form.valid" >Guardar</button>
         </div>
       </div>
 

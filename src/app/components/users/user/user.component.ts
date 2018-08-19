@@ -1,8 +1,10 @@
-import {Component, HostListener, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from "../../../interfaces/user.interface";
 import {UsersService} from "../../../../services/users.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {RolesComponent} from "../../roles/roles.component";
+import {RolesService} from "../../../../services/roles.service";
+import {Observable} from "rxjs/Observable";
+import {Role} from "../../../interfaces/role.interface";
 
 @Component({
   selector: 'app-user',
@@ -18,20 +20,22 @@ export class UserComponent implements OnInit {
   repassword:string;
 
 
-  /*rolesDisponibles:any[] = [];*/
+  rolesDisponibles: Role[];
 
   constructor(private _userService:UsersService,
               private router: Router,
-              private activatedRoute:ActivatedRoute) {
+              private activatedRoute:ActivatedRoute,
+              private _rolesService: RolesService) {
     this.activatedRoute.params.subscribe(parametros => {
       console.log(parametros);
-      debugger;
       this.id = parametros['id'];
       this.user = this._userService.initNewUser();
-      /*this.rolesDisponibles = this._roleService.getRoles();*/
+
 
       if( this.id == "nuevo" ){
-        /*this.rolesDisponibles = this._roleService.getRoles();*/
+        this._rolesService.getRoles().subscribe(roles => {
+          this.rolesDisponibles = roles
+        });
       }else{
         this._userService.get(this.id)
           .subscribe( data => {
@@ -65,6 +69,10 @@ export class UserComponent implements OnInit {
     }
   }
 
+
+  validarUsuario(usuario: User){
+    return true;
+  }
 
 
 

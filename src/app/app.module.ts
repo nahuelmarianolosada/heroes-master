@@ -31,10 +31,12 @@ import { LoginComponent } from './components/login/login.component';
 import { TokenStorage } from './token.storage'
 import { UsersComponent } from './components/users/users.component';
 import { UserComponent } from './components/users/user/user.component';
-import {RolesComponent} from "./components/roles/roles.component";
+import { RolesComponent } from "./components/roles/roles.component";
+import { CmbRolComponent } from "./components/roles/rol/cmb-rol/cmb-rol.component";
 
 //  PIPES ng g p pipes/keys
 import { KeysPipe } from './pipes/keys.pipe';
+
 
 
 
@@ -53,7 +55,8 @@ import { KeysPipe } from './pipes/keys.pipe';
     LoginComponent,
     UsersComponent,
     UserComponent,
-    RolesComponent
+    RolesComponent,
+    CmbRolComponent
   ],
   imports: [
     HttpClientModule,
