@@ -1,11 +1,22 @@
 <div class="form-group">
-  <div class="btn-group">
-    <select id="Id" class="hideLabel form-control" #Id="ngModel" [(ngModel)]="rolSeleccionado"
-            (change)="selectionChanged($event)">
-      <option [ngValue]="rol" *ngFor="let rol of roles; let i = index">
+  <div class="btn-group" >
+    <button id="cmbRol"
+            #cmbRol="ngModel"
+            type="button"
+            class="btn btn-danger dropdown-toggle"
+            data-toggle="dropdown"
+            [(ngModel)]="rolSeleccionado"
+            aria-haspopup="true"
+            aria-expanded="false"
+            ngDefaultControl>
+      {{rolSeleccionado.name}}
+    </button>
+    <div class="dropdown-menu">
+      <button *ngFor="let rol of roles; let i = index"
+              class="dropdown-item" type="button" (click)="selectionChanged(rol)">
         {{rol.name}}
-      </option>
-    </select>
+      </button>
+    </div>
   </div>
 </div>
 

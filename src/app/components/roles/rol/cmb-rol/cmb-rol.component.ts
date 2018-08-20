@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Role} from "../../../../interfaces/role.interface";
 import {RolesService} from "../../../../../services/roles.service";
 
@@ -15,7 +15,10 @@ export class CmbRolComponent implements OnInit {
   @Input()
   rolSeleccionado: Role;
 
-  constructor(private _roleService: RolesService) { }
+  @Output() notify: EventEmitter<Role> = new EventEmitter<Role>();
+
+  constructor(private _roleService: RolesService) {
+  }
 
   /*@Input()*/
 /*
@@ -29,6 +32,7 @@ export class CmbRolComponent implements OnInit {
   ngOnInit() {
     /*this.rolSeleccionado = this._roleService.initNewRol();*/
     debugger;
+    console.log(this.rolSeleccionado);
     /*if(!this.roles) {this.getAll()};*/
   }
 
@@ -43,7 +47,10 @@ export class CmbRolComponent implements OnInit {
   }
 
   selectionChanged(event){
-
+    debugger;
+    this.rolSeleccionado = event;
+    this.notify.emit(this.rolSeleccionado);
+    console.log(this.rolSeleccionado);
   }
 
 }

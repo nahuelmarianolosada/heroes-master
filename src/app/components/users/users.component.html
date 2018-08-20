@@ -1,5 +1,5 @@
 <h1>Usuarios <small>Todos</small></h1>
-<div class="row align-items-center ">
+<div class="row justify-content-center align-items-center ">
   <div class="col-md-6 text-left  " >
     <button class="button btn-outline-primary btn-lg" type="button" name="btnNuevoUsuario" [routerLink]="['/user','nuevo']">
       <div style='text-align:center;'><i class="fa fa-plus"></i> Agregar</div>
@@ -14,19 +14,25 @@
     </div>
   </div>
 </div>
-<div class="card-columns">
-
-  <div class="card animated fadeIn fast " *ngFor="let user of users; let i = index" >
-    <img class="card-img-top" src="{{user.roles[0].key == 'ROLE_ADMIN' ? 'assets/img/administrador.png' : 'assets/img/Usuario.png'}}" alt="{{user.nombre}}">
+<div class="card-columns text-center" style="margin-top: 10px;" >
+  <div class="card animated fadeIn fast" style="max-width: 18rem; " *ngFor="let user of users; let i = index" >
+    <img class="card-img-top img-fluid" src="{{user.roles[0].key == 'ROLE_ADMIN' ? 'assets/img/administrador.png' : 'assets/img/Usuario.png'}}" alt="{{user.nombre}}">
     <div class="card-body">
       <h5 class="card-title">{{user.firstName}} {{user.lastName}}</h5>
       <p class="card-text">{{user.email}}</p>
-      <p class="card-text"><small class="text-muted">{{user.roles[0].name}}</small></p>
+    </div>
+    <div class="card-header ">
+      <p class="card-text" *ngFor="let rol of user.roles; let i = index"><small class="text-muted">{{rol.name}}</small></p>
     </div>
 
-
-    <button (click)="verUser(user.id)" type="button" class="btn btn-outline-primary btn-block">Ver más...</button>
-    <!--<a [routerLink]="['/heroe',i]" class="btn btn-outline-primary btn-block" >Ver más...</a>-->
+    <div class="row d-flex justify-content-center align-items-center" style="margin: 10px;">
+      <div class="col">
+        <button (click)="verUser(user.id)" type="button" class="btn btn-outline-primary btn-block col">Ver más...</button>
+      </div>
+      <div class="col">
+        <button (click)="verUser(user.id)" type="button" class="btn btn-outline-danger btn-block col">Eliminar</button>
+      </div>
+    </div>
   </div>
-
 </div>
+

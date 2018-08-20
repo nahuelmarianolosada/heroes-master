@@ -1,11 +1,11 @@
 <h3>Usuario
-  <small>{{user.id == 0 ? 'Nuevo' : user.id}}</small>
+  <small>{{user.id == null ? 'Nuevo' : user.id}}</small>
 </h3>
 
 <hr>
 
 <div class="row animated fadeIn fast">
-  <div class="col-md-12 ">
+  <div class="col-md-6 ">
     <form (ngSubmit)="guardar()" #userForm="ngForm">
       <div class="form-group" [ngClass]="{
         'has-danger': firstName.invalid && (firstName.dirty || firstName.touched),
@@ -18,7 +18,8 @@
                class="form-control"
                placeholder="Nombre del usuario"
                required>
-        <div class="form-control-feedback" *ngIf="firstName.errors && (firstName.dirty || firstName.touched)" class="alert alert-danger">
+        <div class="form-control-feedback alert alert-danger"
+             *ngIf="firstName.errors && (firstName.dirty || firstName.touched)" >
           <div [hidden]="!firstName.errors.required">
             First Name is required!
           </div>
@@ -46,44 +47,35 @@
       </div>
 
 
-      <div class="form-group">
-        <div class="btn-group" *ngFor="let rol of user.roles; let i = index">
-          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                  aria-expanded="false">
-            {{rol.name}}
-          </button>
-          <div class="dropdown-menu">
-            <button class="dropdown-item" type="button">{{rol.name}}</button>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="form-group" [hidden]="user.id != 0">
+      <div class="form-group" [hidden]="user.id != null">
         <label>Password</label>
         <input [(ngModel)]="user.password"
                name="password"
-               type="text"
+               type="password"
                class="form-control"
                placeholder="Password"
-               required>
+               #password="ngModel"
+               [required]="user.id == null ? true : false">
       </div>
 
 
-      <div class="form-group" [hidden]="user.id != 0">
+      <div class="form-group" [hidden]="user.id != null">
         <label>Repetir Password</label>
         <input [(ngModel)]="repassword"
                name="repassword"
-               type="text"
+               type="password"
                class="form-control"
                placeholder="Repassword"
-               required>
+               [required]="user.id == null ? true : false">
       </div>
 
 
       <div class="form-group">
         <label>Roles</label>
-        <cmb-rol *ngFor="let rol of user.roles; let i = index" [rolSeleccionado]="rol" [roles]="rolesDisponibles"></cmb-rol>
+        <cmb-rol [rolSeleccionado]="user.roles.length > 0 ? user.roles[0] : rolesDisponibles[0]"
+                 [roles]="rolesDisponibles" (notify)="onNotify($event)">
+
+        </cmb-rol>
       </div>
 
       <div class="row">

@@ -5,6 +5,7 @@ import 'rxjs/Rx';
 import { Observable } from "rxjs/Observable";
 import { TokenStorage } from "../app/token.storage";
 import { User } from "../app/interfaces/user.interface";
+import {RolesService} from "./roles.service";
 
 @Injectable()
 export class UsersService {
@@ -15,7 +16,7 @@ export class UsersService {
 
  /* users: any[] = [];*/
 
-  constructor(private http: Http, private tokenStorage: TokenStorage) {
+  constructor(private http: Http, private tokenStorage: TokenStorage, private _roleService: RolesService) {
     this.headers = new Headers({ 'Content-Type': 'application/json', 'withCredentials': 'true','Access-Control-Allow-Origin': 'true' });
     console.log(JSON.parse(localStorage.getItem('AuthToken')).token);
     this.headers.append('Authorization' , JSON.parse(localStorage.getItem('AuthToken')).token);
@@ -91,12 +92,12 @@ export class UsersService {
       roles: user.roles
     } :
       {
-        id:0,
+        id:null,
         firstName:"",
         lastName:"",
         email: "",
         password: "",
-        roles: null
+        roles: [this._roleService.initNewRol()]
       }
   }
 

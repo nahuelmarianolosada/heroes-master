@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {User} from "../../../interfaces/user.interface";
-import {UsersService} from "../../../../services/users.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {RolesService} from "../../../../services/roles.service";
-import {Observable} from "rxjs/Observable";
-import {Role} from "../../../interfaces/role.interface";
+import { Component, OnInit } from '@angular/core';
+import { User } from "../../../interfaces/user.interface";
+import { UsersService } from "../../../../services/users.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { RolesService } from "../../../../services/roles.service";
+import { Role } from "../../../interfaces/role.interface";
+import { CmbRolComponent } from "../../roles/rol/cmb-rol/cmb-rol.component";
 
 @Component({
   selector: 'app-user',
@@ -13,7 +13,6 @@ import {Role} from "../../../interfaces/role.interface";
 })
 export class UserComponent implements OnInit {
 
-  /*nuevo:boolean = false;*/
   id:string;
 
   user:User;
@@ -31,19 +30,17 @@ export class UserComponent implements OnInit {
       this.id = parametros['id'];
       this.user = this._userService.initNewUser();
 
-
       if( this.id == "nuevo" ){
-        this._rolesService.getRoles().subscribe(roles => {
-          this.rolesDisponibles = roles
-        });
+
       }else{
         this._userService.get(this.id)
           .subscribe( data => {
             debugger;
             this.user = data;
-          })
+            this.user.password="";
+          });
       }
-
+      this.obtenerRoles();
     });
   }
 
@@ -57,7 +54,9 @@ export class UserComponent implements OnInit {
 
 
   guardar(){
+    debugger;
     if(this.id == "nuevo"){
+      this.user.id = null;
       this._userService.newUser(this.user).subscribe((res: Response) => {
         this.router.navigate(['users']);
       }, error => {console.log(error)});
@@ -74,7 +73,16 @@ export class UserComponent implements OnInit {
     return true;
   }
 
+  obtenerRoles(){
+    this._rolesService.getRoles().subscribe(roles => {
+      this.rolesDisponibles = roles
+    });
+  }
 
+  onNotify(newRole:Role):void {
+    debugger;
+    this.user.roles[0] = newRole;
+  }
 
 
 }
