@@ -4,80 +4,148 @@
 
 <hr>
 
-<div class="row animated fadeIn fast">
-  <div class="col-md-6 ">
-    <form (ngSubmit)="guardar()" #userForm="ngForm">
-      <div class="form-group" [ngClass]="{
-        'has-danger': firstName.invalid && (firstName.dirty || firstName.touched),
-        'has-success': firstName.valid && (firstName.dirty || firstName.touched)}">
-        <label>Nombre</label>
-        <input [(ngModel)]="user.firstName"
-               #firstName="ngModel"
-               name="firstName"
-               type="text"
-               class="form-control"
-               placeholder="Nombre del usuario"
-               required>
-        <div class="form-control-feedback alert alert-danger"
-             *ngIf="firstName.errors && (firstName.dirty || firstName.touched)" >
-          <div [hidden]="!firstName.errors.required">
-            First Name is required!
+
+<form (ngSubmit)="onSubmit()" #userForm="ngForm">
+  <div class="animated fadeIn fast">
+
+    <div class="form-group" [ngClass]="{
+          'has-danger': firstName.invalid && (firstName.dirty || firstName.touched),
+          'has-success': firstName.valid && (firstName.dirty || firstName.touched)}">
+      <label>Nombre</label>
+      <div class="row">
+        <div class="col-md-6 ">
+          <input [(ngModel)]="user.firstName"
+                 #firstName="ngModel"
+                 name="firstName"
+                 type="text"
+                 class="form-control"
+                 placeholder="Nombre del usuario"
+                 required>
+        </div>
+
+        <div class="col-md-6 ">
+          <div class="alert alert-danger"
+               *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
+            <div *ngIf="firstName.errors?.required && firstName.touched">
+              First Name is required!
+            </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="form-group">
-        <label>Apellido</label>
-        <input [(ngModel)]="user.lastName"
-               name="last"
-               type="text"
-               class="form-control"
-               placeholder="Apellido del Usuario"
-               required>
+    <div class="form-group">
+      <label>Apellido</label>
+      <div class="row">
+        <div class="col-md-6 ">
+          <input [(ngModel)]="user.lastName"
+                 #lastName="ngModel"
+                 name="lastName"
+                 type="text"
+                 class="form-control"
+                 placeholder="Apellido del Usuario"
+                 required>
+        </div>
+        <div class="col-md-6 ">
+          <div class="alert alert-danger "
+               *ngIf="lastName.errors && (lastName.dirty || lastName.touched)">
+            <div *ngIf="lastName.errors?.required && lastName.touched">
+              Last Name is required!
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
 
-      <div class="form-group">
-        <label>Email</label>
-        <input [(ngModel)]="user.email"
-               name="email"
-               type="email"
-               class="form-control"
-               placeholder="Email"
-               required>
+    <div class="form-group">
+      <label>Email</label>
+      <div class="row">
+        <div class="col-md-6 ">
+          <input #email="ngModel"
+                 [(ngModel)]="user.email"
+                 name="email"
+                 type="email"
+                 class="form-control"
+                 placeholder="Email"
+                 required
+                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+        </div>
+        <div class="col-md-6 ">
+          <div class="alert alert-danger "
+               *ngIf="email.errors && (email.dirty || email.touched)">
+            <div *ngIf="email.errors?.required && email.touched">
+              Email is required!
+            </div>
+            <div *ngIf="email.errors?.pattern && email.touched">
+              The email id doesn't seem right
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
 
-
-      <div class="form-group" [hidden]="user.id != null">
-        <label>Password</label>
-        <input [(ngModel)]="user.password"
-               name="password"
-               type="password"
-               class="form-control"
-               placeholder="Password"
-               #password="ngModel"
-               [required]="user.id == null ? true : false">
+    <div class="form-group" [hidden]="user.id != null">
+      <label>Password</label>
+      <div class="row">
+        <div class="col-md-6 ">
+          <input [(ngModel)]="user.password"
+                 #password="ngModel"
+                 name="password"
+                 type="password"
+                 class="form-control"
+                 placeholder="Password"
+                 [required]="user.id == null ? true : false">
+        </div>
+        <div class="col-md-6 ">
+          <div class="alert alert-danger "
+               *ngIf="password.errors && (password.dirty || password.touched)">
+            <div *ngIf="password.errors?.required && password.touched">
+              Password is required!
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
 
 
-      <div class="form-group" [hidden]="user.id != null">
-        <label>Repetir Password</label>
-        <input [(ngModel)]="repassword"
-               name="repassword"
-               type="password"
-               class="form-control"
-               placeholder="Repassword"
-               [required]="user.id == null ? true : false">
+    <div class="form-group" [hidden]="user.id != null">
+      <label>Repetir Password</label>
+      <div class="row">
+        <div class="col-md-6 ">
+          <input #confirmPassword="ngModel"
+                 [(ngModel)]="repassword"
+                 name="confirmPassword"
+                 type="password"
+                 class="form-control"
+                 placeholder="Confirm Password"
+                 [required]="user.id == null ? true : false">
+        </div>
+        <div class="col-md-6 ">
+          <div class="alert alert-danger "
+               *ngIf="confirmPassword.errors && (confirmPassword.dirty || confirmPassword.touched)">
+            <div *ngIf="confirmPassword.errors?.required && confirmPassword.touched">
+              Confirm password is required!
+            </div>
+          </div>
+          <div class="alert alert-danger "
+               *ngIf="(password.value != confirmPassword.value) && confirmPassword.touched">
+            <div>
+              Passwords should be equals
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
 
 
-      <div class="form-group">
-        <label>Roles</label>
-        <cmb-rol [rolSeleccionado]="user.roles.length > 0 ? user.roles[0] : rolesDisponibles[0]"
-                 [roles]="rolesDisponibles" (notify)="onNotify($event)">
+    <div class="form-group">
+      <label>Roles</label>
+      <cmb-rol [rolSeleccionado]="user.roles.length > 0 ? user.roles[0] : rolesDisponibles[0]"
+               [roles]="rolesDisponibles" (notify)="onNotify($event)">
+      </cmb-rol>
+    </div>
 
-        </cmb-rol>
-      </div>
-
+    <div class="col-md-12">
       <div class="row">
         <div class="col text-right">
           <div class="form-group">
@@ -90,11 +158,11 @@
           </div>
         </div>
         <div class="col text-left">
-          <button type="submit" class="btn btn-outline-primary" [disabled]="!userForm.form.valid" >Guardar</button>
+          <button type="submit" class="btn btn-outline-primary" [disabled]="!userForm.form.valid">Guardar</button>
         </div>
       </div>
-
-
-    </form>
+    </div>
   </div>
-</div>
+</form>
+
+

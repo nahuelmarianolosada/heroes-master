@@ -17,14 +17,14 @@ export class AuthService {
     return this.http.post(this.authUrl, JSON.stringify({email: email, password: password}), {headers: this.headers})
       .map((response: Response) => {
         // login successful if there's a jwt token in the response
-        debugger;
         /*let token = response.json() && response.json().token;*/
         let token = response.headers.get("Authorization");
         if (token) {
           let body = response.text();
+          var user = JSON.parse(body);
           // store username and jwt token in local storage to keep user logged in between page refreshes
           /*localStorage.setItem('currentUser', JSON.stringify({ email: email }));*/
-          this.tokenStorage.saveToken(JSON.stringify({ email: email, role: body, token: token }));
+          this.tokenStorage.saveToken(JSON.stringify({ email: user.email, role: user.authorities, token: token }));
           // return true to indicate successful login
           console.log(this.tokenStorage.getToken());
           return true;
