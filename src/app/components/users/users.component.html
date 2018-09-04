@@ -1,4 +1,4 @@
-<h1>Usuarios <small>Todos</small></h1>
+<h1>Usuarios </h1>
 <div class="row justify-content-center align-items-center ">
   <div class="col-md-6 text-left  " >
     <button class="button btn-outline-primary btn-lg" type="button" name="btnNuevoUsuario" [routerLink]="['/user','nuevo']">
@@ -34,6 +34,12 @@
         <button (click)="verUser(user.id)"
                 type="button" class="btn btn-outline-primary btn-block col">
           <div style='text-align:center;'><i class="fa fa-edit"></i></div>
+        </button>
+      </div>
+      <div class="col">
+        <button (click)="changePass(user.id)"
+                type="button" class="btn btn-outline-secondary btn-block col">
+          <div style='text-align:center;'><i class="fa fa-key"></i></div>
         </button>
       </div>
       <div class="col">

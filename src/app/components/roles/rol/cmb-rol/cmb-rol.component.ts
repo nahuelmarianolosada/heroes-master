@@ -20,20 +20,10 @@ export class CmbRolComponent implements OnInit {
   constructor(private _roleService: RolesService) {
   }
 
-  /*@Input()*/
-/*
-  set setRolSeleccionado(rol: Role) {
-    this.rolSeleccionado = (rol) || null;
-  }
-
-  get getRolSeleccionado(): Role { return this.rolSeleccionado; }*/
-
 
   ngOnInit() {
-    /*this.rolSeleccionado = this._roleService.initNewRol();*/
     debugger;
     console.log(this.rolSeleccionado);
-    /*if(!this.roles) {this.getAll()};*/
   }
 
   getAll(){

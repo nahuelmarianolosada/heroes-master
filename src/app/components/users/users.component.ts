@@ -37,15 +37,14 @@ export class UsersComponent implements OnInit {
   }
 
 
+  changePass(idx: number){
+    this._router.navigate(['/user', idx, {changepass: true }]);
+  }
+
 
   confirmDelUser(user: User){
     this.userSelected = user;
   }
-
-
-
-
-
 
 
   getAll(){

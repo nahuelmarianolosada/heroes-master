@@ -36,6 +36,7 @@ import { CmbRolComponent } from "./components/roles/rol/cmb-rol/cmb-rol.componen
 
 //  PIPES ng g p pipes/keys
 import { KeysPipe } from './pipes/keys.pipe';
+import {JwtInterceptor} from "./app.interceptor";
 
 
 
@@ -73,7 +74,12 @@ import { KeysPipe } from './pipes/keys.pipe';
     AuthService,
     TokenStorage,
     UsersService,
-    RolesService
+    RolesService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [ AppComponent ]
 })
