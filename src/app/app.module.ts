@@ -33,12 +33,14 @@ import { UsersComponent } from './components/users/users.component';
 import { UserComponent } from './components/users/user/user.component';
 import { RolesComponent } from "./components/roles/roles.component";
 import { CmbRolComponent } from "./components/roles/rol/cmb-rol/cmb-rol.component";
+import { StaffComponent } from './components/staff/staff.component';
 
 //  PIPES ng g p pipes/keys
 import { KeysPipe } from './pipes/keys.pipe';
 import {JwtInterceptor} from "./app.interceptor";
-
-
+import { environment } from "../environments/environment";
+import { MyProfileComponent } from './components/staff/my-profile/my-profile.component';
+import {StaffService} from "../services/staff.service";
 
 
 @NgModule({
@@ -57,7 +59,9 @@ import {JwtInterceptor} from "./app.interceptor";
     UsersComponent,
     UserComponent,
     RolesComponent,
-    CmbRolComponent
+    CmbRolComponent,
+    StaffComponent,
+    MyProfileComponent
   ],
   imports: [
     HttpClientModule,
@@ -75,6 +79,7 @@ import {JwtInterceptor} from "./app.interceptor";
     TokenStorage,
     UsersService,
     RolesService,
+    StaffService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
@@ -83,6 +88,13 @@ import {JwtInterceptor} from "./app.interceptor";
   ],
   bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor() {
+    console.log('Base Api :' + environment.apiBase +
+      ' production? ' +  environment.production +
+      ' env: ' + environment.envName);
+  }
+}
 
 /*platformBrowserDynamic().bootstrapModule(AppModule);*/

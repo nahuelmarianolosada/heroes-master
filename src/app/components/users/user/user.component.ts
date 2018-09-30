@@ -79,6 +79,23 @@ export class UserComponent implements OnInit {
   }
 
 
+  getValidationMessage(array, type) {
+  /*for (var i = 0; i < array.length; i++) {
+    if (array[i]["type"] == type) {
+      return array[i]["message"];
+    }
+  }
+  return null;*/
+    return array.find(function (obj) { return obj.type === type; }).message;
+}
+
+
+  getError(err: any){
+    debugger;
+    return err;
+  }
+
+
   account_validation_messages = {
     'firstName': [
       {type: 'required', message: 'Username is required'},
@@ -87,13 +104,20 @@ export class UserComponent implements OnInit {
       {type: 'pattern', message: 'Your username must contain only numbers and letters'},
       {type: 'validUsername', message: 'Your username has already been taken'}
     ],
+    'lastName': [
+      {type: 'required', message: 'Lastname is required'},
+      {type: 'minlength', message: 'Lastname must be at least 5 characters long'},
+      {type: 'maxlength', message: 'Lastname cannot be more than 25 characters long'},
+      {type: 'pattern', message: 'Your username must contain only numbers and letters'},
+      {type: 'validLastname', message: 'Your username has already been taken'}
+    ],
     'email': [
       {type: 'required', message: 'Email is required'},
       {type: 'pattern', message: 'Enter a valid email'}
     ],
     'confirm_password': [
       {type: 'required', message: 'Confirm password is required'},
-      {type: 'areEqual', message: 'Password mismatch'}
+      {type: 'areEqual', message: 'Passwords should be equals'}
     ],
     'password': [
       {type: 'required', message: 'Password is required'},

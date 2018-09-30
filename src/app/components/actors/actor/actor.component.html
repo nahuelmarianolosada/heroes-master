@@ -1,5 +1,5 @@
-<h3>Héroe
-  <small >{{actor.actorId == 0 ? 'Nuevo' : actor.actorId}}</small>
+<h3>Actor
+  <small>{{actor.actorId == 0 ? 'Nuevo' : actor.actorId}}</small>
 </h3>
 
 <hr>
@@ -9,28 +9,48 @@
     <form (ngSubmit)="guardar()">
       <div class="alert alert-primary d-none" role="alert">
       </div>
-      <div class="form-group">
-        <label>Nombre</label>
-        <input [(ngModel)]="actor.firstName"
-               name="first"
-               type="text"
-               class="form-control"
-               placeholder="Nombre del héroe"
-               required autofocus>
-      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
 
-      <div class="form-group">
-        <label>Apellido</label>
-        <input [(ngModel)]="actor.lastName"
-               name="last"
-               type="text"
-               class="form-control"
-               placeholder="Apellido del héroe"
-               required>
-      </div>
+            <div class="form-group ">
+              <label>Nombre</label>
+              <input [(ngModel)]="actor.firstName"
+                     name="first"
+                     type="text"
+                     class="form-control"
+                     placeholder="Nombre del héroe"
+                     required autofocus>
+            </div>
 
-      <div class="form-group">
-        <p class="card-text"><small class="text-muted">Última actualización </small >{{actor.lastUpdate | date: 'dd/MM/yyyy'}}</p>
+            <div class="form-group">
+              <label>Apellido</label>
+              <input [(ngModel)]="actor.lastName"
+                     name="last"
+                     type="text"
+                     class="form-control"
+                     placeholder="Apellido del héroe"
+                     required>
+            </div>
+
+            <div class="form-group">
+              <p class="card-text">
+                <small class="text-muted">Última actualización</small>
+                {{actor.lastUpdate | date: 'dd/MM/yyyy'}}
+              </p>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="form-group">
+              <p class="card-text">
+                <small class="text-muted">Info</small>
+                {{actor.filmInfo}}
+              </p>
+            </div>
+          </div>
+        </div>
+
       </div>
 
 
@@ -46,7 +66,7 @@
           </div>
         </div>
         <div class="col text-left">
-          <button  type="submit" class="btn btn-outline-primary">Guardar</button>
+          <button type="submit" class="btn btn-outline-primary">Guardar</button>
         </div>
       </div>
 

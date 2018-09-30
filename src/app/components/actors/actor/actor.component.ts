@@ -35,6 +35,11 @@ export class ActorComponent implements OnInit {
         this._actorService.get(this.id)
           .subscribe( data => {
             this.actor = data;
+            this._actorService.getInfo(this.actor).subscribe(data => {
+              debugger;
+              this.actor = data;
+            });
+
           })
       }
 

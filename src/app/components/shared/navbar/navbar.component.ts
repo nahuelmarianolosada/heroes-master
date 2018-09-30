@@ -38,6 +38,19 @@ export class NavbarComponent implements OnInit {
   }
 
 
+  isAdmin(){
+    return this.getLogedUser().role[0] == "ROLE_ADMIN" ? true : false;
+  }
+
+
+  verProfile(){
+    debugger;
+    var email = this.getLogedUser().email;
+    this.router.navigate(['myProfile', email]);
+  }
+
+
+
   logout(){
     this.authService.logout();
     this.router.navigate(['/login']);

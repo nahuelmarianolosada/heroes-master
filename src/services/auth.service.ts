@@ -4,10 +4,12 @@ import {Observable} from "rxjs/Observable";
 import {Http, Headers, Response} from "@angular/http";
 import {TokenStorage} from "../app/token.storage";
 import {JwtHelperService} from "@auth0/angular-jwt";
+import {environment} from "../environments/environment";
 @Injectable()
 export class AuthService {
 
-  private authUrl = 'http://localhost:8080/heroes/login';
+  /*private authUrl = 'http://localhost:8080/heroes/login';*/
+  private authUrl = environment.authUrl;
   private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http, private tokenStorage:TokenStorage) {

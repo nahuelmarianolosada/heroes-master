@@ -1,3 +1,9 @@
 .navbar {
   font-family: 'Montserrat' !important;
 }
+
+li.nav-item.active {
+  border-bottom-width: 5px;
+}
+
+

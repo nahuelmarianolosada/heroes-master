@@ -18,7 +18,7 @@
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['actors']" >Actores</a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
+      <li class="nav-item" routerLinkActive="active" *ngIf="isAdmin()">
         <a class="nav-link" [routerLink]="['users']" >Usuarios</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
@@ -39,7 +39,7 @@
         {{getLogedUser().email}}
       </button>
       <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" [routerLink]="['about']"><i class="fa fa-user-circle-o"></i> Perfil</a>
+        <a class="dropdown-item" (click)="verProfile()"><i class="fa fa-user-circle-o"></i> Perfil</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" (click)="logout()"><i class="fa fa-power-off"></i> Salir</a>
       </div>

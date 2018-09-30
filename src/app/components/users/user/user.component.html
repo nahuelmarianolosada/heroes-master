@@ -21,13 +21,18 @@
                  type="text"
                  class="form-control"
                  placeholder="Nombre del usuario"
-                 required>
+                 required
+                 minlength="5">
         </div>
 
         <div class="col-md-6 ">
           <div class="alert alert-danger"
                *ngIf="firstName.errors?.required && (firstName.dirty || firstName.touched)">
-              First Name is required!
+             {{ getValidationMessage(account_validation_messages.firstName, 'required') }}
+          </div>
+          <div class="alert alert-danger"
+               *ngIf="firstName.errors?.minlength && (firstName.dirty || firstName.touched)">
+             {{ getValidationMessage(account_validation_messages.firstName, 'minlength') }}
           </div>
         </div>
       </div>
@@ -48,7 +53,7 @@
         <div class="col-md-6 ">
           <div class="alert alert-danger "
                *ngIf="lastName.errors?.required && (lastName.dirty || lastName.touched)">
-              Last Name is required!
+            {{ getValidationMessage(account_validation_messages.lastName, 'required') }}
           </div>
         </div>
       </div>
@@ -71,10 +76,10 @@
           <div class="alert alert-danger "
                *ngIf="email.errors && (email.dirty || email.touched)">
             <div *ngIf="email.errors?.required && email.touched">
-              Email is required!
+              {{ getValidationMessage(account_validation_messages.email, 'required') }}
             </div>
             <div *ngIf="email.errors?.pattern && email.touched">
-              The email id doesn't seem right
+              {{ getValidationMessage(account_validation_messages.email, 'pattern') }}
             </div>
           </div>
         </div>
@@ -97,7 +102,7 @@
           <div class="alert alert-danger "
                *ngIf="password.errors && (password.dirty || password.touched)">
             <div *ngIf="password.errors?.required && password.touched">
-              Password is required!
+              {{ getValidationMessage(account_validation_messages.password, 'required') }}
             </div>
           </div>
         </div>
@@ -121,13 +126,13 @@
           <div class="alert alert-danger "
                *ngIf="confirmPassword.errors && (confirmPassword.dirty || confirmPassword.touched)">
             <div *ngIf="confirmPassword.errors?.required && confirmPassword.touched">
-              Confirm password is required!
+              {{ getValidationMessage(account_validation_messages.confirm_password, 'required') }}
             </div>
           </div>
           <div class="alert alert-danger "
                *ngIf="(password.value != confirmPassword.value) && confirmPassword.touched">
             <div>
-              Passwords should be equals
+              {{ getValidationMessage(account_validation_messages.confirm_password, 'areEqual') }}
             </div>
           </div>
         </div>

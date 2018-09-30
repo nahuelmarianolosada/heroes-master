@@ -13,6 +13,7 @@ import { ActorComponent } from "./components/actors/actor/actor.component";
 import { LoginComponent } from "./components/login/login.component";
 import { UsersComponent } from "./components/users/users.component";
 import { UserComponent } from "./components/users/user/user.component";
+import {MyProfileComponent} from "./components/staff/my-profile/my-profile.component";
 
 const APP_ROUTES: Routes = [
   {path: 'login', component: LoginComponent},
@@ -25,6 +26,7 @@ const APP_ROUTES: Routes = [
   {path: 'actor/:id', component: ActorComponent},
   {path: 'users', component: UsersComponent},
   {path: 'user/:id', component: UserComponent},
+  {path: 'myProfile/:email', component: MyProfileComponent},
   {path: '**', pathMatch: 'full', redirectTo: 'login'}
 ];
 

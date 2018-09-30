@@ -4,18 +4,20 @@ import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
 import { Observable } from "rxjs/Observable";
 import { TokenStorage } from "../app/token.storage";
-import { Role } from "../app/interfaces/role.interface";
+import { Staff } from "../app/interfaces/staff.interface";
+import {RolesService} from "./roles.service";
 import {environment} from "../environments/environment";
 
 @Injectable()
-export class RolesService {
-  rolesURL:string = environment.authUrl + "/roles";
+export class StaffService {
+
+  staffURL:string = environment.apiBase + "/staff";
   headers: Headers;
   options: RequestOptions;
 
-  roles: any[] = [];
+ /* users: any[] = [];*/
 
-  constructor(private http: Http, private tokenStorage: TokenStorage) {
+  constructor(private http: Http, private tokenStorage: TokenStorage, private _roleService: RolesService) {
     this.headers = new Headers({ 'Content-Type': 'application/json', 'withCredentials': 'true','Access-Control-Allow-Origin': 'true' });
     console.log(JSON.parse(localStorage.getItem('AuthToken')).token);
     this.headers.append('Authorization' , JSON.parse(localStorage.getItem('AuthToken')).token);
@@ -26,8 +28,8 @@ export class RolesService {
 
 
 
-  newRole(role: Role){
-    return this.http.post(this.rolesURL, role, this.options)
+  newStaff(staff: Staff){
+    return this.http.post(this.staffURL, staff, this.options)
       .map( (res: Response) => res.json() )
       .catch(this.handleErrorObservable);
   }
@@ -36,8 +38,8 @@ export class RolesService {
 
 
 
-  updateRole(role: Role){
-    return this.http.put(this.rolesURL, role, this.options)
+  updateStaff(staff: Staff){
+    return this.http.put(this.staffURL, staff, this.options)
       .map( res =>
         res.json()
       ).catch(this.handleErrorPromise);
@@ -45,9 +47,9 @@ export class RolesService {
 
 
 
-  deleteRole(role: Role){
+  deleteStaff(staff: Staff){
 
-    return this.http.delete(this.rolesURL + "/" + role.id, this.options)
+    return this.http.delete(this.staffURL + "/" + staff.staffId, this.options)
       .map( res =>
         res.json()
       ).catch(this.handleErrorPromise);
@@ -55,8 +57,8 @@ export class RolesService {
 
 
 
-  getRoles() {
-    return this.http.get(this.rolesURL, this.options)
+  getStaff() {
+    return this.http.get(this.staffURL, this.options)
       .map( res =>
         res.json()
       ).catch(this.handleErrorPromise);
@@ -64,8 +66,8 @@ export class RolesService {
 
 
 
-  get(id:string) {
-    return this.http.get(this.rolesURL + "/" + id, this.options)
+  get(email:string) {
+    return this.http.get(this.staffURL + "/email" + email, this.options)
       .map( res =>
         res.json()
       ).catch(this.handleErrorPromise);
@@ -73,25 +75,34 @@ export class RolesService {
 
 
 
-  getInfo(role:Role) {
-    return this.http.get(this.rolesURL + "/info/" + role.id, this.options)
+  getInfo(staff:Staff) {
+    return this.http.get(this.staffURL + "/info/" + staff.staffId, this.options)
       .map( res =>
         res.json()
       ).catch(this.handleErrorPromise);
   }
 
-  initNewRol(rol?:any){
+  initNewStaff(staff?:any){
     debugger;
-    return rol ? {
-      id: rol.id,
-      name:rol.firstName,
-      key:rol.lastName} :
+    return staff ? {
+      id: staff.staffId,
+      firstName:staff.firstName,
+      lastName:staff.lastName,
+      email: staff.email,
+      password: "",
+      roles: staff.roles
+    } :
       {
-        id:0,
-        name:"",
-        key:""
+        id:null,
+        firstName:"",
+        lastName:"",
+        email: "",
+        password: "",
+        roles: [this._roleService.initNewRol()]
       }
   }
+
+
 
   private handleErrorObservable (error: Response | any) {
     debugger;
@@ -104,4 +115,8 @@ export class RolesService {
     return Promise.reject(error.status || error);
   }
 
+
+
+
 }
+

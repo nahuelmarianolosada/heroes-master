@@ -5,6 +5,7 @@ import 'rxjs/Rx';
 import { Actor } from "../app/interfaces/actor.interface";
 import {Observable} from "rxjs/Observable";
 import {TokenStorage} from "../app/token.storage";
+import {environment} from "../environments/environment";
 
 
 
@@ -12,7 +13,7 @@ import {TokenStorage} from "../app/token.storage";
 @Injectable()
 export class ActorsService {
 
-  actorsURL:string = "http://localhost:8080/heroes/actors";
+  actorsURL:string =  environment.apiBase +"/actors";
   headers: Headers;
   options: RequestOptions;
 
