@@ -9,7 +9,7 @@ import {environment} from "../environments/environment";
 
 @Injectable()
 export class RolesService {
-  rolesURL:string = environment.authUrl + "/roles";
+  rolesURL:string = environment.apiBase + "/roles";
   headers: Headers;
   options: RequestOptions;
 
