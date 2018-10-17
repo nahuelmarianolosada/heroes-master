@@ -4,6 +4,6 @@
 export const environment = {
   production: false,
   apiBase: 'http://localhost:8080/heroes',
-  authUrl: 'http://localhost:8080/heroes/login',
+  authUrl: this.apiBase + '/login',
   envName: 'dev'
 };

@@ -5,8 +5,8 @@ import 'rxjs/Rx';
 import { Observable } from "rxjs/Observable";
 import { TokenStorage } from "../app/token.storage";
 import { User } from "../app/interfaces/user.interface";
-import {RolesService} from "./roles.service";
-import {environment} from "../environments/environment";
+import { RolesService } from "./roles.service";
+import { environment } from "../environments/environment";
 
 @Injectable()
 export class UsersService {

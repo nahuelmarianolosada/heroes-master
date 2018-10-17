@@ -3,9 +3,9 @@ import {Http, RequestOptions, Response, HttpModule, Headers} from '@angular/http
 import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
 import { Actor } from "../app/interfaces/actor.interface";
-import {Observable} from "rxjs/Observable";
-import {TokenStorage} from "../app/token.storage";
-import {environment} from "../environments/environment";
+import { Observable } from "rxjs/Observable";
+import { TokenStorage } from "../app/token.storage";
+import { environment } from "../environments/environment";
 
 
 
@@ -21,7 +21,7 @@ export class ActorsService {
 
   constructor(private http: Http, private tokenStorage: TokenStorage) {
     /*'Bearer ' + this.tokenStorage.getToken()*/
-debugger;
+    debugger;
     this.headers = new Headers({ 'Content-Type': 'application/json', 'withCredentials': 'true','Access-Control-Allow-Origin': 'true' });
     console.log(JSON.parse(localStorage.getItem('AuthToken')).token);
     this.headers.append('Authorization' , JSON.parse(localStorage.getItem('AuthToken')).token);
@@ -72,6 +72,7 @@ debugger;
 
 
   getActors() {
+    debugger;
      return this.http.get(this.actorsURL, this.options)
                             .map( res =>
                               res.json()

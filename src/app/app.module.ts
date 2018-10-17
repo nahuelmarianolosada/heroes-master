@@ -12,6 +12,7 @@ import { ActorsService } from "../services/actors.service";
 import { UsersService } from "../services/users.service";
 import { AuthService } from "../services/auth.service";
 import { RolesService } from "../services/roles.service";
+import { StaffService } from "../services/staff.service";
 
 // ROUTES
 import { APP_ROUTING } from './app.routes';
@@ -34,13 +35,14 @@ import { UserComponent } from './components/users/user/user.component';
 import { RolesComponent } from "./components/roles/roles.component";
 import { CmbRolComponent } from "./components/roles/rol/cmb-rol/cmb-rol.component";
 import { StaffComponent } from './components/staff/staff.component';
+import { MyProfileComponent } from './components/staff/my-profile/my-profile.component';
 
 //  PIPES ng g p pipes/keys
 import { KeysPipe } from './pipes/keys.pipe';
 import {JwtInterceptor} from "./app.interceptor";
 import { environment } from "../environments/environment";
-import { MyProfileComponent } from './components/staff/my-profile/my-profile.component';
-import {StaffService} from "../services/staff.service";
+
+
 
 
 @NgModule({
