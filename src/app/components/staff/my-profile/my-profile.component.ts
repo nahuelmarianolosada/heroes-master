@@ -18,7 +18,10 @@ export class MyProfileComponent {
         debugger;
         console.log(params['email']);//Id que recibe como parametro GET
 
-        this.staff = this._staffService.get(this.getLogedUser().email);
+        this.staff = this._staffService.get(this.getLogedUser().email).subscribe(data => {
+          debugger;
+          this.staff = data;
+        });
         //this.staff = StaffsService.getStaff(params['id']);
       }
     );

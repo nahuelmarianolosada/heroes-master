@@ -15,8 +15,6 @@ export class UsersService {
   headers: Headers;
   options: RequestOptions;
 
- /* users: any[] = [];*/
-
   constructor(private http: Http, private tokenStorage: TokenStorage, private _roleService: RolesService) {
     this.headers = new Headers({ 'Content-Type': 'application/json', 'withCredentials': 'true','Access-Control-Allow-Origin': 'true' });
     console.log(JSON.parse(localStorage.getItem('AuthToken')).token);
@@ -48,7 +46,6 @@ export class UsersService {
 
 
   deleteUser(user: User){
-
     return this.http.delete(this.usersURL + "/" + user.id, this.options)
       .map( res =>
         res.json()

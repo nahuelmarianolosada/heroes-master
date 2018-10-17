@@ -1,10 +1,10 @@
 
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs/Observable";
-import {Http, Headers, Response} from "@angular/http";
-import {TokenStorage} from "../app/token.storage";
-import {JwtHelperService} from "@auth0/angular-jwt";
-import {environment} from "../environments/environment";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs/Observable";
+import { Http, Headers, Response } from "@angular/http";
+import { TokenStorage } from "../app/token.storage";
+import { JwtHelperService } from "@auth0/angular-jwt";
+import { environment } from "../environments/environment";
 @Injectable()
 export class AuthService {
 

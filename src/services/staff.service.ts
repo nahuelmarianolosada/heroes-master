@@ -15,8 +15,6 @@ export class StaffService {
   headers: Headers;
   options: RequestOptions;
 
- /* users: any[] = [];*/
-
   constructor(private http: Http, private tokenStorage: TokenStorage, private _roleService: RolesService) {
     this.headers = new Headers({ 'Content-Type': 'application/json', 'withCredentials': 'true','Access-Control-Allow-Origin': 'true' });
     console.log(JSON.parse(localStorage.getItem('AuthToken')).token);
@@ -67,10 +65,13 @@ export class StaffService {
 
 
   get(email:string) {
-    return this.http.get(this.staffURL + "/email" + email, this.options)
-      .map( res =>
-        res.json()
-      ).catch(this.handleErrorPromise);
+    debugger;
+    return this.http.get(this.staffURL + "/findByEmail/" + email, this.options)
+     .map( res => res.json())
+     .catch(this.handleErrorPromise);
+   /* return this.http.post(this.staffURL+ "/findByEmail", {"email": email}, this.options)
+      .map( (res: Response) => res.json() )
+      .catch(this.handleErrorObservable);*/
   }
 
 
