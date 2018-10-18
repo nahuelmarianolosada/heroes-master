@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import {StaffService} from "../../../../services/staff.service";
-import {ActivatedRoute} from "@angular/router";
-import {TokenStorage} from "../../../token.storage";
+import { StaffService } from "../../../../services/staff.service";
+import { ActivatedRoute } from "@angular/router";
+import { TokenStorage } from "../../../token.storage";
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-my-profile',
@@ -11,7 +12,10 @@ import {TokenStorage} from "../../../token.storage";
 export class MyProfileComponent {
   staff:any = {};
 
-  constructor(private activatedRoute: ActivatedRoute, private _staffService: StaffService, private _tokenStorage:TokenStorage) {
+  constructor(private activatedRoute: ActivatedRoute,
+              private _staffService: StaffService,
+              private _tokenStorage:TokenStorage,
+              private _location: Location) {
     debugger;
     this.activatedRoute.params.subscribe(
       params =>{
@@ -30,6 +34,10 @@ export class MyProfileComponent {
   getLogedUser(){
     return JSON.parse(localStorage.getItem('AuthToken'));
     /*return this.loguedUser != null ? this.loguedUser : this.tokenStorage.getToken().token;*/
+  }
+
+  backClicked() {
+    this._location.back();
   }
 
  /* verProfile(idx: number) {

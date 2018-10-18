@@ -1,26 +1,30 @@
-<h1 class="animated fadeIn fast">{{staff.firstName}} <small>{{staff.firstName}}</small></h1>
+<h1 class="animated fadeIn fast">Mi Perfil </h1>
 
 <hr>
-<!--
 
 
 <div class="row animated fadeIn fast">
   <div class="col-md-4">
 
-    <img src="{{heroe.img}}" class="img-fluid" alt="">
+    <img src="assets/img/hulk.png" class="img-fluid" alt="">
     <br>
     <br>
-    <a [routerLink]="['/heroes']" class="btn btn-outline-danger btn-block" >Regresar</a>
+    <a (click)="backClicked()" class="btn btn-outline-danger btn-block" >Regresar</a>
 
   </div>
 
   <div class="col-8">
-    <h3>{{heroe.nombre}}</h3>
+    <h3>{{staff.firstName}} {{staff.lastName}}</h3>
+    <p>{{staff.email}}</p>
+    <p><b>Id Tienda:</b> {{staff.storeId}}</p>
+    <p>Activo: {{staff.active}}</p>
+    <p>Username: {{staff.username}}</p>
+    <p>Foto: {{staff.picture}}</p>
+    <p *ngFor="let role of staff.roles; let i = index" >{{role.name}}</p>
+
     <hr>
-    <p>{{heroe.bio}}</p>
-    <div><img src="{{heroe.casa === 'DC' ? 'assets/img/dc-comics-icon.png' : 'assets/img/icon-marvel.png'}}" alt="casa"></div>
+    <p>Actualizado: {{staff.lastUpdate | date: 'yyyy-MM-dd HH:MM'}}</p>
   </div>
 
 
 </div>
--->

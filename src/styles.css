@@ -35,3 +35,8 @@ body{
 }
 
 [hidden] { display: none !important;}
+
+
+a .btn .btn-outline-danger .btn-block {
+  color: #dc3545 !important;
+}
