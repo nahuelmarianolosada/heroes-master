@@ -1,3 +1,19 @@
-<p>
-  staff works!
-</p>
+<h1>Personal <small>Marvel y DC</small></h1>
+<div class="card-columns">
+
+  <div class="card animated fadeIn" *ngFor="let staffUser of staff; let i = index" >
+    <img class="card-img-top" src="assets/img/spiderman.png" alt="{{staffUser.firstName}}">
+    <div class="card-body">
+      <h5 class="card-title">{{staffUser.firstName}} {{staffUser.lastName}}</h5>
+      <p class="card-text">{{staffUser.email}}</p>
+      <p class="card-text">{{staffUser.username}}</p>
+      <p *ngFor="let role of staffUser.roles; let i = index" >{{role.name}}</p>
+      <p class="card-text"><small class="text-muted">{{staffUser.lastUpdate | date: 'HH:MM dd-MM-yyyy'}}</small></p>
+    </div>
+
+
+    <button (click)="verHeroe(i)" type="button" class="btn btn-outline-primary btn-block">Ver más...</button>
+    <!--<a [routerLink]="['/heroe',i]" class="btn btn-outline-primary btn-block" >Ver más...</a>-->
+  </div>
+
+</div>

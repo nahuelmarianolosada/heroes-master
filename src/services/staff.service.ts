@@ -65,7 +65,6 @@ export class StaffService {
 
 
   get(email:string) {
-    debugger;
     return this.http.get(this.staffURL + "/findByEmail/" + email, this.options)
      .map( res => res.json())
      .catch(this.handleErrorPromise);
