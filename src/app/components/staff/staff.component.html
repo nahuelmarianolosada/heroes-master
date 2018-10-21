@@ -2,7 +2,7 @@
 <div class="card-columns">
 
   <div class="card animated fadeIn" *ngFor="let staffUser of staff; let i = index" >
-    <img class="card-img-top" src="assets/img/spiderman.png" alt="{{staffUser.firstName}}">
+    <img class="card-img-top" src="{{ staffUser.roles[0] ? staffUser.roles[0].img : 'assets/img/spiderman.png' }}" alt="{{staffUser.firstName}}">
     <div class="card-body">
       <h5 class="card-title">{{staffUser.firstName}} {{staffUser.lastName}}</h5>
       <p class="card-text">{{staffUser.email}}</p>

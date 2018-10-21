@@ -85,11 +85,13 @@ export class RolesService {
     return rol ? {
       id: rol.id,
       name:rol.firstName,
-      key:rol.lastName} :
+      key:rol.lastName,
+      img:rol.img} :
       {
         id:0,
         name:"",
-        key:""
+        key:"",
+        img:""
       }
   }
 
