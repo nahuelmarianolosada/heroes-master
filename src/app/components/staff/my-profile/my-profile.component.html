@@ -6,7 +6,7 @@
 <div class="row animated fadeIn">
   <div class="col-md-4">
 
-    <img src="assets/img/hulk.png" class="img-fluid" alt="">
+    <img src="{{staff.roles[0] ? staff.roles[0].img : 'assets/img/spiderman.png'}}" class="img-fluid" alt="">
     <br>
     <br>
     <a (click)="backClicked()" class="btn btn-outline-danger btn-block" >Regresar</a>
