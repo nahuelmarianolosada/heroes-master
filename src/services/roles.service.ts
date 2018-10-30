@@ -86,11 +86,12 @@ export class RolesService {
       id: rol.id,
       name:rol.firstName,
       key:rol.lastName,
-      img:rol.img} :
+      img:rol.img
+    } :
       {
         id:0,
-        name:"",
-        key:"",
+        name:"Seleccione un rol",
+        key:null,
         img:""
       }
   }

@@ -1,0 +1,10 @@
+.alert {
+  margin-bottom: 0px;
+  padding: 0.35rem 1.25rem;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

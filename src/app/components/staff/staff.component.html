@@ -1,9 +1,25 @@
-<h1>Personal <small>Marvel y DC</small></h1>
+<h1>Personal <!--<small>Marvel y DC</small>--></h1>
 <hr/>
 
-<div class="card-columns">
+<div class="row ">
+  <div class="col-md-6 text-left  " >
+    <button class="button btn-outline-primary btn-lg" type="button" name="btnNewStaff" [routerLink]="['/staff','nuevo']">
+      <div style='text-align:center;'><i class="fa fa-plus"></i> Agregar</div>
+    </button>
+  </div>
+  <!--<div class="col-md-6 text-right ">
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+        <input class="form-control" type="text" name="search" [(ngModel)]="filter">
+      </div>
+    </div>
+  </div>-->
+</div>
 
-  <div class="card animated fadeIn" *ngFor="let staffUser of staff; let i = index" >
+<div class="card-columns text-center" style="margin-top: 10px;">
+
+  <div class="card animated fadeIn" style="max-width: 18rem;" *ngFor="let staffUser of staff; let i = index" >
     <img class="card-img-top" src="{{ staffUser.roles[0] ? staffUser.roles[0].img : 'assets/img/spiderman.png' }}" alt="{{staffUser.firstName}}">
     <div class="card-body">
       <h5 class="card-title">{{staffUser.firstName}} {{staffUser.lastName}}</h5>
@@ -14,7 +30,31 @@
     </div>
 
 
-    <button (click)="verHeroe(i)" type="button" class="btn btn-outline-primary btn-block">Ver más...</button>
+    <!--<button (click)="verHeroe(i)" type="button" class="btn btn-outline-primary btn-block">Ver más...</button>-->
+    <div class="row d-flex justify-content-center align-items-center" style="margin: 10px;">
+      <div class="col">
+        <button (click)="verStaffUser(staffUser.staffId)"
+                type="button" class="btn btn-outline-primary btn-block col">
+          <div style='text-align:center;'><i class="fa fa-edit"></i></div>
+        </button>
+      </div>
+      <div class="col">
+        <button (click)="changePass(staffUser.staffId)"
+                type="button" class="btn btn-outline-secondary btn-block col">
+          <div style='text-align:center;'><i class="fa fa-key"></i></div>
+        </button>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-outline-danger btn-block col"
+                data-toggle="modal" data-target="#confirmDeleteModal"
+                (click)="confirmDelUser(user)">
+          <div style='text-align:center;'><i class="fa fa-trash-o"></i></div>
+        </button>
+        <!--<button (click)="verUser(user.id)"
+                type="button" class="btn btn-outline-danger btn-block col">Eliminar</button>-->
+      </div>
+    </div>
+
     <!--<a [routerLink]="['/heroe',i]" class="btn btn-outline-primary btn-block" >Ver más...</a>-->
   </div>
 

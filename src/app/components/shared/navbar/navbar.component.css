@@ -7,3 +7,11 @@ li.nav-item.active {
 }
 
 
+.btn-lg {
+  font-size: 1rem;
+}
+
+.btn-outline-light {
+  border-color: transparent;
+}
+

@@ -15,6 +15,7 @@ import { UsersComponent } from "./components/users/users.component";
 import { UserComponent } from "./components/users/user/user.component";
 import {MyProfileComponent} from "./components/staff/my-profile/my-profile.component";
 import {StaffComponent} from "./components/staff/staff.component";
+import {UserStaffComponent} from "./components/staff/user-staff/user-staff.component";
 
 const APP_ROUTES: Routes = [
   {path: 'login', component: LoginComponent},
@@ -29,6 +30,7 @@ const APP_ROUTES: Routes = [
   {path: 'user/:id', component: UserComponent},
   {path: 'myProfile/:email', component: MyProfileComponent},
   {path: 'staff', component: StaffComponent},
+  {path: 'staff/:id', component: UserStaffComponent},
   {path: '**', pathMatch: 'full', redirectTo: 'login'}
 ];
 

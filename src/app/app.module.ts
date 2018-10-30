@@ -41,6 +41,13 @@ import { MyProfileComponent } from './components/staff/my-profile/my-profile.com
 import { KeysPipe } from './pipes/keys.pipe';
 import {JwtInterceptor} from "./app.interceptor";
 import { environment } from "../environments/environment";
+import { UserStaffComponent } from './components/staff/user-staff/user-staff.component';
+import { ShowErrorsComponent } from './components/shared/form/show-errors/show-errors.component';
+
+
+// DIRECTIVES
+import { TelephoneNumberFormatValidatorDirective } from './directives/telephone-number-format-validator.directive';
+import { EmailFormatValidatorDirective } from './directives/email-format-validator.directive';
 
 
 
@@ -63,7 +70,11 @@ import { environment } from "../environments/environment";
     RolesComponent,
     CmbRolComponent,
     StaffComponent,
-    MyProfileComponent
+    MyProfileComponent,
+    UserStaffComponent,
+    ShowErrorsComponent,
+    TelephoneNumberFormatValidatorDirective,
+    EmailFormatValidatorDirective
   ],
   imports: [
     HttpClientModule,

@@ -82,22 +82,39 @@ export class StaffService {
       ).catch(this.handleErrorPromise);
   }
 
+  getInfoById(staffId:number) {
+    return this.http.get(this.staffURL + "/" + staffId, this.options)
+      .map( res =>
+        res.json()
+      ).catch(this.handleErrorPromise);
+  }
+
   initNewStaff(staff?:any){
     debugger;
     return staff ? {
-      id: staff.staffId,
+      staffId: staff.staffId,
       firstName:staff.firstName,
       lastName:staff.lastName,
       email: staff.email,
+      storeId: staff.storeId,
+      active: staff.active,
+      username: staff.username,
       password: "",
+      lastUpdate: staff.lastUpdate,
+      picture: staff.picture,
       roles: staff.roles
     } :
       {
-        id:null,
+        staffId:null,
         firstName:"",
         lastName:"",
         email: "",
+        storeId: null,
+        active: false,
+        username: "",
         password: "",
+        lastUpdate: null,
+        picture: "",
         roles: [this._roleService.initNewRol()]
       }
   }

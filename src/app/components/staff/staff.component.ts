@@ -27,11 +27,6 @@ export class StaffComponent implements OnInit {
     });
   }
 
-
-  verHeroe(idx: number) {
-    this._router.navigate(['/heroe', idx]);
-  }
-
   initNewStaffUser(staffUser?:any){
     return staffUser ? {
       staffId: staffUser.staffId,
@@ -61,6 +56,20 @@ export class StaffComponent implements OnInit {
       }
   }
 
+
+  verStaffUser(idx: number) {
+    this._router.navigate(['/staff', idx]);
+  }
+
+
+  changePass(idx: number){
+    this._router.navigate(['/staff', idx, {changepass: true }]);
+  }
+
+
+  confirmDelUser(staff: Staff){
+    /*this.staffSelected = user;*/
+  }
 
 
   private handleErrorObservable (error: Response | any) {
