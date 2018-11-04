@@ -13,6 +13,8 @@ import { UsersService } from "../services/users.service";
 import { AuthService } from "../services/auth.service";
 import { RolesService } from "../services/roles.service";
 import { StaffService } from "../services/staff.service";
+import { StoreService } from "../services/store.service";
+
 
 // ROUTES
 import { APP_ROUTING } from './app.routes';
@@ -36,6 +38,7 @@ import { RolesComponent } from "./components/roles/roles.component";
 import { CmbRolComponent } from "./components/roles/rol/cmb-rol/cmb-rol.component";
 import { StaffComponent } from './components/staff/staff.component';
 import { MyProfileComponent } from './components/staff/my-profile/my-profile.component';
+import { CmbStoreComponent } from './components/store/cmb-store/cmb-store.component';
 
 //  PIPES ng g p pipes/keys
 import { KeysPipe } from './pipes/keys.pipe';
@@ -48,6 +51,7 @@ import { ShowErrorsComponent } from './components/shared/form/show-errors/show-e
 // DIRECTIVES
 import { TelephoneNumberFormatValidatorDirective } from './directives/telephone-number-format-validator.directive';
 import { EmailFormatValidatorDirective } from './directives/email-format-validator.directive';
+
 
 
 
@@ -74,7 +78,8 @@ import { EmailFormatValidatorDirective } from './directives/email-format-validat
     UserStaffComponent,
     ShowErrorsComponent,
     TelephoneNumberFormatValidatorDirective,
-    EmailFormatValidatorDirective
+    EmailFormatValidatorDirective,
+    CmbStoreComponent
   ],
   imports: [
     HttpClientModule,
@@ -93,6 +98,7 @@ import { EmailFormatValidatorDirective } from './directives/email-format-validat
     UsersService,
     RolesService,
     StaffService,
+    StoreService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,

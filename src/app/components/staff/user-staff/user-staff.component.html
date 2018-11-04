@@ -112,7 +112,7 @@
     <div class="form-group" [hidden]="staff.staffId != null && !editPass">
       <label>Repetir Password</label>
       <div class="row">
-        <div class="col-md-6 ">
+        <div class="col-md-3 ">
           <input #confirmPassword="ngModel"
                  [(ngModel)]="repassword"
                  name="confirmPassword"
@@ -121,7 +121,7 @@
                  placeholder="Confirm Password"
                  [required]="staff.staffId == null || editPass ? true : false">
         </div>
-        <div class="col-md-6 ">
+        <div class="col-md-9 ">
           <show-errors [control]="confirmPassword"></show-errors>
           <div class="alert alert-danger "
                *ngIf="(password.value != confirmPassword.value) && confirmPassword.touched">
@@ -135,11 +135,27 @@
 
 
     <div class="form-group" *ngIf="!editPass">
-      <label>Roles</label>
-      <cmb-rol [rolSeleccionado]="staff.roles.length > 0 ? staff.roles[0] : rolesDisponibles[0]"
-               [roles]="rolesDisponibles" (notify)="onNotify($event)">
-      </cmb-rol>
+        <div class="row">
+          <div class="col-md-3 ">
+            <label>Tienda</label>
+            <cmb-store [selectedStore]="staff.store ? staff.store : storesAvailable[0]"
+                       [stores]="storesAvailable" (notify)="onNotifyStore($event)">
+            </cmb-store>
+          </div>
+      <!--</div>-->
+
+      <!--<div class="form-group" *ngIf="!editPass">-->
+          <div class="col-md-3 ">
+            <label>Roles</label>
+            <cmb-rol [rolSeleccionado]="staff.roles.length > 0 ? staff.roles[0] : rolesDisponibles[0]"
+                     [roles]="rolesDisponibles" (notify)="onNotifyRol($event)">
+            </cmb-rol>
+          </div>
+          <div class="col-md-6 "></div>
+      </div>
     </div>
+
+
 
 
     <div class="col-md-12">

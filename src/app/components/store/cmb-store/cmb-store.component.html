@@ -1,0 +1,22 @@
+<div class="form-group">
+  <div class="btn-group" >
+    <button id="cmbStore"
+            #cmbStore="ngModel"
+            type="button"
+            class="btn btn-danger dropdown-toggle"
+            data-toggle="dropdown"
+            [(ngModel)]="selectedStore"
+            aria-haspopup="true"
+            aria-expanded="false"
+            ngDefaultControl>
+      {{selectedStore.address.address}}
+    </button>
+    <div class="dropdown-menu">
+      <button *ngFor="let store of stores; let i = index"
+              class="dropdown-item" type="button" (click)="selectionChanged(store)">
+        {{store.address.address}} - {{store.managerStaff.lastName}}
+      </button>
+    </div>
+  </div>
+</div>
+

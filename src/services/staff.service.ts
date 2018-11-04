@@ -7,6 +7,7 @@ import { TokenStorage } from "../app/token.storage";
 import { Staff } from "../app/interfaces/staff.interface";
 import { RolesService } from "./roles.service";
 import { environment } from "../environments/environment";
+import {StoreService} from "./store.service";
 
 @Injectable()
 export class StaffService {
@@ -15,7 +16,10 @@ export class StaffService {
   headers: Headers;
   options: RequestOptions;
 
-  constructor(private http: Http, private tokenStorage: TokenStorage, private _roleService: RolesService) {
+  constructor(private http: Http,
+              private tokenStorage: TokenStorage,
+              private _roleService: RolesService,
+              private _storeService: StoreService) {
     this.headers = new Headers({ 'Content-Type': 'application/json', 'withCredentials': 'true','Access-Control-Allow-Origin': 'true' });
     console.log(JSON.parse(localStorage.getItem('AuthToken')).token);
     this.headers.append('Authorization' , JSON.parse(localStorage.getItem('AuthToken')).token);
@@ -96,7 +100,7 @@ export class StaffService {
       firstName:staff.firstName,
       lastName:staff.lastName,
       email: staff.email,
-      storeId: staff.storeId,
+      store: staff.storeId,
       active: staff.active,
       username: staff.username,
       password: "",
@@ -109,7 +113,7 @@ export class StaffService {
         firstName:"",
         lastName:"",
         email: "",
-        storeId: null,
+        store: null,
         active: false,
         username: "",
         password: "",

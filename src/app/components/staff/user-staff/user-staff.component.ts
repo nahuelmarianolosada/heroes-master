@@ -4,6 +4,8 @@ import {StaffService} from "../../../../services/staff.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {RolesService} from "../../../../services/roles.service";
 import {Role} from "../../../interfaces/role.interface";
+import {Store} from "../../../interfaces/store.interface";
+import {StoreService} from "../../../../services/store.service";
 
 @Component({
   selector: 'app-user-staff',
@@ -18,11 +20,13 @@ export class UserStaffComponent implements OnInit {
   repassword: string = "";
   editPass: boolean;
   rolesDisponibles: Role[];
+  storesAvailable: Store[];
 
   constructor(private _staffService: StaffService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
-              private _rolesService: RolesService) {
+              private _rolesService: RolesService,
+              private _storeService: StoreService) {
     this.activatedRoute.params.subscribe(parametros => {
       console.log(parametros);
 
@@ -30,23 +34,33 @@ export class UserStaffComponent implements OnInit {
       this.id = parametros['id'];
       this.editPass = parametros['changepass'] ? parametros['changepass'] : false;
       this.staff = this._staffService.initNewStaff();
+      this.storesAvailable = [];
 
       if (this.id != "nuevo") {
         var staffId = +this.id;
         this._staffService.getInfoById(staffId).subscribe(data => {
           this.staff = data;
+          debugger;
+          /*this.staff.store = this._storeService.get(this.staff.store);*/
         });
       }
+      this.getStores();
       this.obtenerRoles();
+
     })
   };
 
   obtenerRoles() {
     this._rolesService.getRoles().subscribe(roles => {
+      debugger;
       this.rolesDisponibles = roles;
-      /*if (this.id == "nuevo"){
-        this.staff.roles.push(this.rolesDisponibles[0]);
-      }*/
+    });
+  }
+
+
+  getStores() {
+    this._storeService.getStores().subscribe(stores => {
+      this.storesAvailable = stores;
     });
   }
 
@@ -91,9 +105,14 @@ export class UserStaffComponent implements OnInit {
 
 
 
-  onNotify(newRole: Role): void {
+  onNotifyRol(newRole: Role): void {
     debugger;
     this.staff.roles[0] = newRole;
+  }
+
+  onNotifyStore(newStore: Store): void {
+    debugger;
+    this.staff.store = newStore;
   }
 
 }
