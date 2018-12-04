@@ -1,5 +1,7 @@
 
 import {Role} from "./role.interface";
+import {Store} from "./store.interface";
+import {Timestamp} from "rxjs/Rx";
 export interface User{
 
   id:number;
@@ -7,5 +9,10 @@ export interface User{
   lastName: string;
   email:string;
   password: string;
-  roles: Role[];
+  username: string;
+  active: boolean;
+  lastUpdate : Timestamp<number>;
+  picture : string;
+  roles : Role[];
+  store: Store;
 }

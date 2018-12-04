@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import {AuthService} from "../../../../services/auth.service";
-import {showWarningOnce} from "tslint/lib/error";
 import {TokenStorage} from "../../../token.storage";
-import {stringify} from "@angular/core/src/util";
-import {current} from "codelyzer/util/syntaxKind";
 
 @Component({
   selector: 'app-navbar',

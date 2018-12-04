@@ -2,14 +2,8 @@
 import { Role } from "./role.interface" ;
 import {Timestamp} from "rxjs/Rx";
 import {Store} from "./store.interface";
-export interface Staff{
 
-  /*StaffId:number;
-  firstName: string;
-  lastName: string;
-  email:string;
-  password: string;
-  roles: Role[];*/
+export interface Staff{
   staffId: number;
    firstName :  string;
    lastName :  string;
@@ -21,6 +15,4 @@ export interface Staff{
    lastUpdate : Timestamp<number>;
    picture : string;
    roles : Role[];
-
-
 }

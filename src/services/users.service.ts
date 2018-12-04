@@ -70,7 +70,14 @@ export class UsersService {
       ).catch(this.handleErrorPromise);
   }
 
-
+  getByEmail(email:string) {
+    return this.http.get(this.usersURL + "/findByEmail/" + email, this.options)
+      .map( res => res.json())
+      .catch(this.handleErrorPromise);
+    /* return this.http.post(this.staffURL+ "/findByEmail", {"email": email}, this.options)
+     .map( (res: Response) => res.json() )
+     .catch(this.handleErrorObservable);*/
+  }
 
   getInfo(user:User) {
     return this.http.get(this.usersURL + "/info/" + user.id, this.options)
@@ -78,6 +85,7 @@ export class UsersService {
         res.json()
       ).catch(this.handleErrorPromise);
   }
+
 
   initNewUser(user?:any){
     debugger;
@@ -87,7 +95,12 @@ export class UsersService {
       lastName:user.lastName,
       email: user.email,
       password: "",
-      roles: user.roles
+      username: user.username,
+      active: user.active,
+      lastUpdate: user.lastUpdate,
+      picture: user.picture,
+      roles: user.roles,
+      store: user.store
     } :
       {
         id:null,
@@ -95,7 +108,12 @@ export class UsersService {
         lastName:"",
         email: "",
         password: "",
-        roles: [this._roleService.initNewRol()]
+        username: "",
+        active: false,
+        lastUpdate: null,
+        picture: "",
+        roles: [this._roleService.initNewRol()],
+        store: null
       }
   }
 
@@ -111,26 +129,6 @@ export class UsersService {
     console.error(error.statusText || error);
     return Promise.reject(error.status || error);
   }
-
-
-
-  /*getUser(idx: string): User {
-   return this.users[idx];
-   }*/
-
-
-  /*findUser(termino: string): User[] {
-   let heroesArr: User[] = [];
-   termino = termino.toLowerCase();
-
-   for (let user of this.users) {
-   let nombre = user.first_name.toLowerCase();
-   if (nombre.indexOf(termino) >= 0) {
-   heroesArr.push(user);
-   }
-   }
-   return heroesArr;
-   }*/
 
 
 }

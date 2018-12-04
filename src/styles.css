@@ -1,3 +1,9 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.col-8 .row {
+  height: 40px;
+}
+
 /* ANIMATED.CSS */
 
 .animated {

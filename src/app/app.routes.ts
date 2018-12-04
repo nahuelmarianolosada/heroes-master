@@ -13,7 +13,7 @@ import { ActorComponent } from "./components/actors/actor/actor.component";
 import { LoginComponent } from "./components/login/login.component";
 import { UsersComponent } from "./components/users/users.component";
 import { UserComponent } from "./components/users/user/user.component";
-import {MyProfileComponent} from "./components/staff/my-profile/my-profile.component";
+import {MyProfileComponent} from "./components/users/my-profile/my-profile.component";
 import {StaffComponent} from "./components/staff/staff.component";
 import {UserStaffComponent} from "./components/staff/user-staff/user-staff.component";
 

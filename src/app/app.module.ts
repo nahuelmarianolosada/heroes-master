@@ -5,6 +5,8 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 
 // SERVICIOS
 import { HeroesService } from '../services/heroes.service';
@@ -37,7 +39,7 @@ import { UserComponent } from './components/users/user/user.component';
 import { RolesComponent } from "./components/roles/roles.component";
 import { CmbRolComponent } from "./components/roles/rol/cmb-rol/cmb-rol.component";
 import { StaffComponent } from './components/staff/staff.component';
-import { MyProfileComponent } from './components/staff/my-profile/my-profile.component';
+import { MyProfileComponent } from './components/users/my-profile/my-profile.component';
 import { CmbStoreComponent } from './components/store/cmb-store/cmb-store.component';
 
 //  PIPES ng g p pipes/keys
@@ -88,7 +90,10 @@ import { EmailFormatValidatorDirective } from './directives/email-format-validat
     HttpModule,
     FormsModule,
     NgxPaginationModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule
   ],
   providers: [
     HeroesService,
