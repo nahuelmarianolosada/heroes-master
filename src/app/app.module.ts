@@ -44,7 +44,6 @@ import { CmbStoreComponent } from './components/store/cmb-store/cmb-store.compon
 
 //  PIPES ng g p pipes/keys
 import { KeysPipe } from './pipes/keys.pipe';
-import {JwtInterceptor} from "./app.interceptor";
 import { environment } from "../environments/environment";
 import { UserStaffComponent } from './components/staff/user-staff/user-staff.component';
 import { ShowErrorsComponent } from './components/shared/form/show-errors/show-errors.component';
@@ -103,12 +102,7 @@ import { EmailFormatValidatorDirective } from './directives/email-format-validat
     UsersService,
     RolesService,
     StaffService,
-    StoreService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor,
-      multi: true
-    }
+    StoreService
   ],
   bootstrap: [ AppComponent ]
 })
