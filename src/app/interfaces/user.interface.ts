@@ -1,18 +1,18 @@
 
-import {Role} from "./role.interface";
-import {Store} from "./store.interface";
-import {Timestamp} from "rxjs/Rx";
-export interface User{
+import {Role} from './role.interface';
+import {Store} from './store.interface';
+import {Timestamp} from 'rxjs/Rx';
+export interface User {
 
-  id:number;
+  id: number;
   firstName: string;
   lastName: string;
-  email:string;
-  password: string;
+  email: string;
+  pass: string;
   username: string;
   active: boolean;
-  lastUpdate : Timestamp<number>;
-  picture : string;
-  roles : Role[];
+  lastUpdate: Timestamp<number>;
+  picture: string;
+  roles: Role[];
   store: Store;
 }

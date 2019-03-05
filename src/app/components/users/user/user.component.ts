@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "../../../interfaces/user.interface";
-import {UsersService} from "../../../../services/users.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {RolesService} from "../../../../services/roles.service";
-import {Role} from "../../../interfaces/role.interface";
-import {FormGroup} from "@angular/forms";
+import {User} from '../../../interfaces/user.interface';
+import {UsersService} from '../../../../services/users.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {RolesService} from '../../../../services/roles.service';
+import {Role} from '../../../interfaces/role.interface';
+import {FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-user',
@@ -12,14 +12,6 @@ import {FormGroup} from "@angular/forms";
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-
-  id: string;
-  user: User;
-  pass: string = "";
-  repassword: string = "";
-  rolesDisponibles: Role[];
-  userForm: FormGroup;
-  editPass: boolean = false;
 
 
   constructor(private _userService: UsersService,
@@ -34,7 +26,7 @@ export class UserComponent implements OnInit {
       this.editPass = parametros['changepass'] ? parametros['changepass'] : false;
       this.user = this._userService.initNewUser();
 
-      if (this.id != "nuevo") {
+      if (this.id != 'nuevo') {
         this._userService.get(this.id).subscribe(data => {
           this.user = data;
         });
@@ -43,57 +35,13 @@ export class UserComponent implements OnInit {
     });
   }
 
-
-  ngOnInit() {
-  }
-
-
-  onSubmit() {
-    this.user.password = this.pass;
-    if (this.id == "nuevo") {
-      this.user.id = null;
-      this._userService.newUser(this.user).subscribe((res: Response) => {
-        this.router.navigate(['users']);
-      }, error => {
-        console.log(error)
-      });
-    } else {
-      this._userService.updateUser(this.user).subscribe((res: Response) => {
-        this.router.navigate(['users']);
-      }, error => {
-        console.log(error);
-      });
-    }
-  }
-
-
-  obtenerRoles() {
-    this._rolesService.getRoles().subscribe(roles => {
-      this.rolesDisponibles = roles
-    });
-  }
-
-  onNotify(newRole: Role): void {
-    debugger;
-    this.user.roles[0] = newRole;
-  }
-
-
-  getValidationMessage(array, type) {
-  /*for (var i = 0; i < array.length; i++) {
-    if (array[i]["type"] == type) {
-      return array[i]["message"];
-    }
-  }
-  return null;*/
-    return array.find(function (obj) { return obj.type === type; }).message;
-}
-
-
-  getError(err: any){
-    debugger;
-    return err;
-  }
+  id: string;
+  user: User;
+  pass = '';
+  repassword = '';
+  rolesDisponibles: Role[];
+  userForm: FormGroup;
+  editPass = false;
 
 
   account_validation_messages = {
@@ -127,5 +75,57 @@ export class UserComponent implements OnInit {
     'terms': [
       {type: 'pattern', message: 'You must accept terms and conditions'}
     ]
+  };
+
+
+  ngOnInit() {
+  }
+
+
+  onSubmit() {
+    this.user.pass = this.pass;
+    if (this.id == 'nuevo') {
+      this.user.id = null;
+      this._userService.newUser(this.user).subscribe((res: Response) => {
+        this.router.navigate(['users']);
+      }, error => {
+        console.log(error);
+      });
+    } else {
+      this._userService.updateUser(this.user).subscribe((res: Response) => {
+        this.router.navigate(['users']);
+      }, error => {
+        console.log(error);
+      });
+    }
+  }
+
+
+  obtenerRoles() {
+    this._rolesService.getRoles().subscribe(roles => {
+      this.rolesDisponibles = roles;
+    });
+  }
+
+  onNotify(newRole: Role): void {
+    debugger;
+    this.user.roles[0] = newRole;
+  }
+
+
+  getValidationMessage(array, type) {
+  /*for (var i = 0; i < array.length; i++) {
+    if (array[i]["type"] == type) {
+      return array[i]["message"];
+    }
+  }
+  return null;*/
+    return array.find(function (obj) { return obj.type === type; }).message;
+}
+
+
+  getError(err: any) {
+    debugger;
+    return err;
   }
 }
