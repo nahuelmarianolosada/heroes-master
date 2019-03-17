@@ -3,7 +3,7 @@
  */
 export const environment = {
   production: false,
-  apiBase: 'http://localhost:8080/heroes',
-  authUrl: 'http://localhost:8080/heroes/login',
+  apiBase: 'http://192.168.0.16:8080/heroes',
+  authUrl: 'http://192.168.0.16:8080/heroes/login',
   envName: 'dev'
 };

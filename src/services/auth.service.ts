@@ -1,10 +1,9 @@
 
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs/Observable";
-import { Http, Headers, Response } from "@angular/http";
-import { TokenStorage } from "../app/token.storage";
-import { JwtHelperService } from "@auth0/angular-jwt";
-import { environment } from "../environments/environment";
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Http, Headers, Response } from '@angular/http';
+import { TokenStorage } from '../app/token.storage';
+import { environment } from '../environments/environment';
 @Injectable()
 export class AuthService {
 
@@ -12,7 +11,7 @@ export class AuthService {
   private authUrl = environment.authUrl;
   private headers = new Headers({'Content-Type': 'application/json'});
 
-  constructor(private http: Http, private tokenStorage:TokenStorage) {
+  constructor(private http: Http, private tokenStorage: TokenStorage) {
   }
 
   login(email: string, password: string): Observable<boolean> {
@@ -20,10 +19,10 @@ export class AuthService {
       .map((response: Response) => {
         // login successful if there's a jwt token in the response
         /*let token = response.json() && response.json().token;*/
-        let token = response.headers.get("Authorization");
+        const token = response.headers.get('Authorization');
         if (token) {
           let body = response.text();
-          var user = JSON.parse(body);
+          let user = JSON.parse(body);
           // store username and jwt token in local storage to keep user logged in between page refreshes
           /*localStorage.setItem('currentUser', JSON.stringify({ email: email }));*/
           this.tokenStorage.saveToken(JSON.stringify({ email: user.email, role: user.authorities, token: token }));
@@ -40,7 +39,7 @@ export class AuthService {
   /*getToken(): String {
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     var token = currentUser && currentUser.token;
-    return token ? token : "";
+    return token ? token : '';
   }*/
 
   /*public isAuthenticated(): boolean {

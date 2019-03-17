@@ -74,7 +74,8 @@
           },
           "configurations": {
             "dev": {
-              "browserTarget": "heroes-tubes:build:dev"
+              "browserTarget": "heroes-tubes:build:dev",
+              "host": "0.0.0.0"
             },
             "qa": {
               "browserTarget": "heroes-tubes:build:qa"
